@@ -7,9 +7,6 @@ const TaskList = () => {
 
     const { tasks, isLoading } = useTodoContext()
 
-    // console.log("task-list.tsx", fetchedTasks)
-    // console.log("task-list.tsx", tasks)
-
     console.log(tasks)
 
     return isLoading ? (
