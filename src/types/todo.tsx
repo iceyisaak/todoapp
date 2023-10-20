@@ -1,20 +1,18 @@
 
-export type Todo = {
-    tasks: {
-        taskId: number,
-        taskTitle: string,
-        editing: boolean
-    }
-    isLoading: boolean,
-    updatedTask: string[],
-    addTask: (newTask: {}) => void,
-    editTask: (editedTask: string) => void,
-    taskToEdit: {
-        taskId: number,
-        taskTitle: string,
-        editing: boolean
-    } | null,
+export type Task = {
+    taskId: number,
+    taskTitle: string,
+    editing: boolean
+}
+
+
+export type TodoContext = {
+    tasks: Task[],
+    addTask: (text: string) => void,
+    deleteTask: (id: number) => void,
+    editTask: (tastTitle: string) => void,
+    taskToEdit: Task,
     selectTaskToEdit: (id: number, taskTitle: string) => void,
-    deleteTask: (id: string) => void,
-    deleteAllTasks: () => void
+    deleteAllTasks: () => void,
+    isLoading: boolean
 }

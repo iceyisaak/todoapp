@@ -3,11 +3,10 @@ import TaskItem from "./task-item/task-item"
 
 import style from './task-list.module.scss'
 
+
 const TaskList = () => {
 
     const { tasks, isLoading } = useTodoContext()
-
-    // console.log(tasks)
 
     return isLoading ? (
         <p>Loading...</p>

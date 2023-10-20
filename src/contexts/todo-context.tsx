@@ -1,15 +1,13 @@
 import { ReactNode, createContext, useContext, useEffect, useState } from 'react'
 
-import { type Task, type Todo } from '../types'
+import { type Task, type TodoContext } from '../types/todo'
 
-type TodoContext = Todo & Task
 
 const TodoContext = createContext<TodoContext>(null!)
 
 const TodoContextProvider = ({ children }: { children: ReactNode }) => {
 
     const [tasks, setTasks] = useState<Task[]>([])
-    // const [fetchedTasks, setFetchedTasks] = useState()
     const [isLoading, setIsLoading] = useState(false)
     const [taskToEdit, setTaskToEdit] = useState({
         taskId: 0,
@@ -21,7 +19,6 @@ const TodoContextProvider = ({ children }: { children: ReactNode }) => {
         fetchSavedTasks()
     }, [])
 
-    // console.log('tasks: ', tasks)
 
     const fetchSavedTasks = () => {
         setIsLoading(true)

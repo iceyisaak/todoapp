@@ -4,7 +4,9 @@ import { useTodoContext } from '../../../contexts/todo-context'
 import { type Task } from '../../../types'
 import style from './task-item.module.scss'
 
-type TaskItem = Task
+type TaskItem = {
+    data: Task
+}
 
 const TaskItem = ({ data }: TaskItem) => {
 

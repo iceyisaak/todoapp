@@ -1,2 +1,1 @@
-export type { Task } from './task'
-export type { Todo } from './todo'
+export type { Task, TodoContext } from './todo'
