@@ -17,6 +17,13 @@ This app lets you:
 - A button to toggle task as completed
 
 
+## How to run project
+- In the console: run command
+  ```
+  npm run dev
+  ```
+
+
 
 ## Sources, Technologies, and Dependencies
 
@@ -27,13 +34,34 @@ https://www.reshot.com/free-svg-icons/item/check-list-3EU5R962XC/
 
 ### Technologies
 - ReactJS
+- React ContextAPI
 - TypeScript
 - SCSS
 - ReactIcons
 
 
 ### Dependencies
+```json
+ "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.10.1",
+    "uuid": "^9.0.0"
 ```
 
+### DevDependencies
+```json
+   "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@types/uuid": "^9.0.2",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react": "^4.0.3",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "sass": "^1.65.1",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5"
 ```
 
+## 
