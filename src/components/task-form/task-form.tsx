@@ -12,7 +12,7 @@ const TaskForm = () => {
     const {
         addTask,
         editTask,
-        taskToEdit,
+        isEditing,
     } = useTodoContext()
 
 
@@ -23,24 +23,26 @@ const TaskForm = () => {
     const onSubmitHandler = (e: FormEvent) => {
         e.preventDefault()
 
-        if (!taskToEdit?.isEditing) {
-            addTask(text)
+        // if (!taskToEdit?.isEditing) {
+        if (isEditing !== null) {
+            editTask(isEditing.taskId, text)
             setText('')
         } else {
-            editTask(text)
+            addTask(text)
+            setText('')
         }
 
     }
 
 
     useEffect(() => {
-        if (taskToEdit?.isEditing) {
-            setText(taskToEdit.taskTitle)
+        if (isEditing !== null) {
+            setText(isEditing.taskTitle)
             inputRef.current.focus()
         } else {
             setText("")
         }
-    }, [taskToEdit])
+    }, [isEditing])
 
 
     return (

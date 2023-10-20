@@ -17,7 +17,7 @@ const TaskItem = ({ data }: TaskItem) => {
     }
 
     const onSelectEditTask = () => {
-        selectTaskToEdit(data.taskId, data.taskTitle, data.isCompleted)
+        selectTaskToEdit(data)
     }
 
     const onToggleTaskAsComplete = () => {

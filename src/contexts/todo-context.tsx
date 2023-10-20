@@ -10,12 +10,8 @@ const TodoContextProvider = ({ children }: { children: ReactNode }) => {
 
     const [tasks, setTasks] = useState<Task[]>([])
     const [isLoading, setIsLoading] = useState(false)
-    const [taskToEdit, setTaskToEdit] = useState({
-        taskId: '',
-        taskTitle: "",
-        isEditing: false,
-        isCompleted: false
-    })
+    const [isEditing, setIsEditing] = useState<Task | null>(null)
+
 
     useEffect(() => {
         fetchSavedTasks()
@@ -37,7 +33,6 @@ const TodoContextProvider = ({ children }: { children: ReactNode }) => {
         const addedTask = {
             taskId: uuidv4(),
             taskTitle,
-            isEditing: false,
             isCompleted: false
         }
         const tasksArray = [...tasks, addedTask]
@@ -72,33 +67,29 @@ const TodoContextProvider = ({ children }: { children: ReactNode }) => {
 
 
 
-    const editTask = (taskTitle: string) => {
+    const selectTaskToEdit = (task: Task) => {
+        const editingTask = {
+            taskId: task.taskId,
+            taskTitle: task.taskTitle,
+            isCompleted: task.isCompleted
+        }
+        setIsEditing(editingTask)
+    }
+
+
+    const editTask = (taskId: string, taskTitle: string) => {
         const editedTask = tasks.map(
             (task) => (
-                task.taskId === taskToEdit.taskId ?
+                task.taskId === taskId ?
                     { ...task, taskTitle } :
                     task
             )
         )
         setTasks(editedTask)
         localStorage.setItem("todo-list", JSON.stringify(editedTask))
-        setTaskToEdit({
-            taskId: '',
-            taskTitle: "",
-            isEditing: false,
-            isCompleted: false
-        })
+        setIsEditing(null)
     }
 
-
-    const selectTaskToEdit = (taskId: string, taskTitle: string, isCompleted: boolean) => {
-        setTaskToEdit({
-            taskId,
-            taskTitle,
-            isEditing: true,
-            isCompleted
-        })
-    }
 
 
     const toggleTaskAsCompleted = (taskId: string) => {
@@ -116,14 +107,14 @@ const TodoContextProvider = ({ children }: { children: ReactNode }) => {
 
 
     const TodoContextValue = {
-        addTask,
         tasks,
-        deleteTask,
+        addTask,
         editTask,
-        taskToEdit,
-        selectTaskToEdit,
+        deleteTask,
         deleteAllTasks,
         isLoading,
+        isEditing,
+        selectTaskToEdit,
         toggleTaskAsCompleted
     }
 
