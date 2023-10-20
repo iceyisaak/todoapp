@@ -2,17 +2,19 @@
 export type Task = {
     taskId: number,
     taskTitle: string,
-    editing: boolean
+    isEditing: boolean
+    isCompleted: boolean
 }
 
 
 export type TodoContext = {
     tasks: Task[],
-    addTask: (text: string) => void,
-    deleteTask: (id: number) => void,
+    addTask: (taskTitle: string) => void,
+    deleteTask: (taskId: number) => void,
     editTask: (tastTitle: string) => void,
     taskToEdit: Task,
-    selectTaskToEdit: (id: number, taskTitle: string) => void,
+    selectTaskToEdit: (taskId: number, taskTitle: string, isCompleted: boolean) => void,
     deleteAllTasks: () => void,
+    toggleTaskAsCompleted: (taskId: number) => void,
     isLoading: boolean
 }

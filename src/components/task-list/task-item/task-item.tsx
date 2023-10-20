@@ -10,19 +10,24 @@ type TaskItem = {
 
 const TaskItem = ({ data }: TaskItem) => {
 
-    const { deleteTask, selectTaskToEdit } = useTodoContext()
+    const { deleteTask, selectTaskToEdit, toggleTaskAsCompleted } = useTodoContext()
 
     const onDeleteTask = () => {
         deleteTask(data.taskId)
     }
 
     const onSelectEditTask = () => {
-        console.log('onSelectEditTask()')
-        selectTaskToEdit(data.taskId, data.taskTitle)
+        selectTaskToEdit(data.taskId, data.taskTitle, data.isCompleted)
+    }
+
+    const onToggleTaskAsComplete = () => {
+        console.log('onToggleTaskAsComplete()')
+        toggleTaskAsCompleted(data.taskId)
     }
 
     return (
         <li className={`${style['TaskItem']}`}>
+            <input type="checkbox" onChange={onToggleTaskAsComplete} checked={data.isCompleted ? true : false} />
             <span className={`${style['task-name']}`}>
                 {data.taskTitle}
             </span>

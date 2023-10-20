@@ -23,7 +23,7 @@ const TaskForm = () => {
     const onSubmitHandler = (e: React.FormEvent) => {
         e.preventDefault()
 
-        if (!taskToEdit?.editing) {
+        if (!taskToEdit?.isEditing) {
             addTask(text)
             setText('')
         } else {
@@ -34,7 +34,7 @@ const TaskForm = () => {
 
 
     useEffect(() => {
-        if (taskToEdit?.editing) {
+        if (taskToEdit?.isEditing) {
             setText(taskToEdit.taskTitle)
             inputRef.current!.focus()
         } else {

@@ -12,7 +12,8 @@ const TodoContextProvider = ({ children }: { children: ReactNode }) => {
     const [taskToEdit, setTaskToEdit] = useState({
         taskId: 0,
         taskTitle: "",
-        editing: false
+        isEditing: false,
+        isCompleted: false
     })
 
     useEffect(() => {
@@ -31,13 +32,13 @@ const TodoContextProvider = ({ children }: { children: ReactNode }) => {
 
 
 
-    const addTask = (text: string) => {
+    const addTask = (taskTitle: string) => {
         const addedTask = {
             taskId: Math.random() * 10,
-            taskTitle: text,
-            editing: false
+            taskTitle,
+            isEditing: false,
+            isCompleted: false
         }
-
         const tasksArray = [...tasks, addedTask]
         setTasks(tasksArray)
         localStorage.setItem("todo-list", JSON.stringify(tasksArray))
@@ -45,12 +46,12 @@ const TodoContextProvider = ({ children }: { children: ReactNode }) => {
 
 
 
-    const deleteTask = (id: number) => {
+    const deleteTask = (taskId: number) => {
         const deleteTaskConfirm = window.confirm('Delete this task?')
         if (deleteTaskConfirm) {
             const filterOutDeletedTask = tasks.filter(
                 (task) => {
-                    return task.taskId !== id
+                    return task.taskId !== taskId
                 }
             )
             setTasks(filterOutDeletedTask)
@@ -71,7 +72,6 @@ const TodoContextProvider = ({ children }: { children: ReactNode }) => {
 
 
     const editTask = (taskTitle: string) => {
-
         const editedTask = tasks.map(
             (task) => (
                 task.taskId === taskToEdit.taskId ?
@@ -79,23 +79,37 @@ const TodoContextProvider = ({ children }: { children: ReactNode }) => {
                     task
             )
         )
-
         setTasks(editedTask)
         localStorage.setItem("todo-list", JSON.stringify(editedTask))
         setTaskToEdit({
             taskId: 0,
             taskTitle: "",
-            editing: false
+            isEditing: false,
+            isCompleted: false
         })
     }
 
 
-    const selectTaskToEdit = (id: number, taskTitle: string) => {
+    const selectTaskToEdit = (taskId: number, taskTitle: string, isCompleted: boolean) => {
         setTaskToEdit({
-            taskId: id,
+            taskId,
             taskTitle,
-            editing: true
+            isEditing: true,
+            isCompleted
         })
+    }
+
+
+    const toggleTaskAsCompleted = (taskId: number) => {
+        const toggledTask = tasks.map(
+            (task) => (
+                task.taskId === taskId ?
+                    { ...task, isCompleted: !task.isCompleted } :
+                    task
+            )
+        )
+        setTasks(toggledTask)
+        localStorage.setItem("todo-list", JSON.stringify(toggledTask))
     }
 
 
@@ -108,7 +122,8 @@ const TodoContextProvider = ({ children }: { children: ReactNode }) => {
         taskToEdit,
         selectTaskToEdit,
         deleteAllTasks,
-        isLoading
+        isLoading,
+        toggleTaskAsCompleted
     }
 
 
