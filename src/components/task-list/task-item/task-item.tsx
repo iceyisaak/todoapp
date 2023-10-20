@@ -21,7 +21,6 @@ const TaskItem = ({ data }: TaskItem) => {
     }
 
     const onToggleTaskAsComplete = () => {
-        console.log('onToggleTaskAsComplete()')
         toggleTaskAsCompleted(data.taskId)
     }
 
