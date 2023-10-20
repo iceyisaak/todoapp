@@ -11,6 +11,9 @@ This app lets you:
 - Simple form input
 - Simple list that display entered tasks
 - Data stored in `localStorage`
+- A button to delete all tasks
+- A button to edit task
+- A button to delete each task
 
 
 
