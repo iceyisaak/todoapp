@@ -17,6 +17,7 @@ const App = () => {
           {
             tasks.length > 0 &&
             <MdOutlineClose
+              title='Delete All Tasks'
               onClick={deleteAllTasks}
               className={`
                 ${'pointer'}
