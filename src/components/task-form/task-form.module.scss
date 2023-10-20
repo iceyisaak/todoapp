@@ -33,6 +33,9 @@
     width: 4rem;
     height: 4rem;
     outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     @include respond(md) {
         width: 5rem;
