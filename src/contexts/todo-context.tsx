@@ -68,12 +68,12 @@ const TodoContextProvider = ({ children }: { children: ReactNode }) => {
 
 
     const selectTaskToEdit = (task: Task) => {
-        const editingTask = {
+        const selectedTask = {
             taskId: task.taskId,
             taskTitle: task.taskTitle,
             isCompleted: task.isCompleted
         }
-        setIsEditing(editingTask)
+        setIsEditing(selectedTask)
     }
 
 

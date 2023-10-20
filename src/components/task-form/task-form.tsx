@@ -23,7 +23,6 @@ const TaskForm = () => {
     const onSubmitHandler = (e: FormEvent) => {
         e.preventDefault()
 
-        // if (!taskToEdit?.isEditing) {
         if (isEditing !== null) {
             editTask(isEditing.taskId, text)
             setText('')
