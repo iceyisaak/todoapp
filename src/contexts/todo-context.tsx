@@ -1,47 +1,27 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { ReactNode, createContext, useContext, useEffect, useState } from 'react'
 
-export interface TodoContextInterface {
-    tasks: [
-        id: string,
-        text: string
-    ],
-    isLoading: boolean,
-    taskToEdit: {
-        task: {
-            id: string,
-            taskTitle: string
-        },
-        edit: boolean
-    },
-    task: {
-        id: string
-    },
-    updatedTask: string[],
-    addTask: (newTask: {}) => Promise<void>,
-    editTask: (editedTask: string) => Promise<void>,
-    selectTaskToEdit: (id: string) => void,
-    deleteTask: (id: string) => Promise<void>,
-    deleteAllTasks: () => void
-}
+import { type Task, type Todo } from '../types'
 
-const TodoContext = createContext<TodoContextInterface>(null!)
+type TodoContext = Todo & Task
 
-const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
+const TodoContext = createContext<TodoContext>(null!)
 
-    const [tasks, setTasks] = useState([])
-    const [fetchedTasks, setFetchedTasks] = useState()
+const TodoContextProvider = ({ children }: { children: ReactNode }) => {
+
+    const [tasks, setTasks] = useState<Task[]>([])
+    // const [fetchedTasks, setFetchedTasks] = useState()
     const [isLoading, setIsLoading] = useState(false)
     const [taskToEdit, setTaskToEdit] = useState({
-        id: 0,
+        taskId: 0,
         taskTitle: "",
-        edit: false
+        editing: false
     })
 
     useEffect(() => {
         fetchSavedTasks()
     }, [])
 
-
+    // console.log('tasks: ', tasks)
 
     const fetchSavedTasks = () => {
         setIsLoading(true)
@@ -55,10 +35,10 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
 
 
     const addTask = (text: string) => {
-
         const addedTask = {
+            taskId: Math.random() * 10,
             taskTitle: text,
-            id: Math.random() * 10
+            editing: false
         }
 
         const tasksArray = [...tasks, addedTask]
@@ -73,7 +53,7 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
         if (deleteTaskConfirm) {
             const filterOutDeletedTask = tasks.filter(
                 (task) => {
-                    return task.id !== id
+                    return task.taskId !== id
                 }
             )
             setTasks(filterOutDeletedTask)
@@ -97,25 +77,27 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
 
         const editedTask = tasks.map(
             (task) => (
-                task.id === taskToEdit.id ? { ...task, taskTitle } : task
+                task.taskId === taskToEdit.taskId ?
+                    { ...task, taskTitle } :
+                    task
             )
         )
 
         setTasks(editedTask)
         localStorage.setItem("todo-list", JSON.stringify(editedTask))
         setTaskToEdit({
-            id: 0,
+            taskId: 0,
             taskTitle: "",
-            edit: false
+            editing: false
         })
     }
 
 
     const selectTaskToEdit = (id: number, taskTitle: string) => {
         setTaskToEdit({
-            id,
+            taskId: id,
             taskTitle,
-            edit: true
+            editing: true
         })
     }
 
@@ -129,8 +111,6 @@ const TodoContextProvider = ({ children }: { children: React.ReactNode }) => {
         taskToEdit,
         selectTaskToEdit,
         deleteAllTasks,
-        // findItem,
-        // editItem,
         isLoading
     }
 

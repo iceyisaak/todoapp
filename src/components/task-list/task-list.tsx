@@ -7,16 +7,21 @@ const TaskList = () => {
 
     const { tasks, isLoading } = useTodoContext()
 
-    console.log(tasks)
+    // console.log(tasks)
 
     return isLoading ? (
         <p>Loading...</p>
     ) : (
         <div className={`${style['TaskList']}`}>
-            {!isLoading && tasks.length < 1 && <p className={`${style['no-task']}`}>+++ Task List is Empty +++</p>}
+            {
+                !isLoading && tasks.length < 1 &&
+                <p className={`${style['no-task']}`}>
+                    +++ Task List is Empty +++
+                </p>
+            }
             <ul>
                 {tasks.map((task) => (
-                    <TaskItem key={task.id} task={task} />
+                    <TaskItem key={task.taskId} data={task} />
                 ))}
             </ul>
         </div>
