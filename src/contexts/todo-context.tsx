@@ -11,7 +11,7 @@ const TodoContextProvider = ({ children }: { children: ReactNode }) => {
     const [tasks, setTasks] = useState<Task[]>([])
     const [isLoading, setIsLoading] = useState(false)
     const [taskToEdit, setTaskToEdit] = useState({
-        taskId: 0,
+        taskId: '',
         taskTitle: "",
         isEditing: false,
         isCompleted: false
@@ -47,7 +47,7 @@ const TodoContextProvider = ({ children }: { children: ReactNode }) => {
 
 
 
-    const deleteTask = (taskId: number) => {
+    const deleteTask = (taskId: string) => {
         const deleteTaskConfirm = window.confirm('Delete this task?')
         if (deleteTaskConfirm) {
             const filterOutDeletedTask = tasks.filter(
@@ -83,7 +83,7 @@ const TodoContextProvider = ({ children }: { children: ReactNode }) => {
         setTasks(editedTask)
         localStorage.setItem("todo-list", JSON.stringify(editedTask))
         setTaskToEdit({
-            taskId: 0,
+            taskId: '',
             taskTitle: "",
             isEditing: false,
             isCompleted: false
@@ -91,7 +91,7 @@ const TodoContextProvider = ({ children }: { children: ReactNode }) => {
     }
 
 
-    const selectTaskToEdit = (taskId: number, taskTitle: string, isCompleted: boolean) => {
+    const selectTaskToEdit = (taskId: string, taskTitle: string, isCompleted: boolean) => {
         setTaskToEdit({
             taskId,
             taskTitle,
@@ -101,7 +101,7 @@ const TodoContextProvider = ({ children }: { children: ReactNode }) => {
     }
 
 
-    const toggleTaskAsCompleted = (taskId: number) => {
+    const toggleTaskAsCompleted = (taskId: string) => {
         const toggledTask = tasks.map(
             (task) => (
                 task.taskId === taskId ?
