@@ -1,4 +1,5 @@
 import { ReactNode, createContext, useContext, useEffect, useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 import { type Task, type TodoContext } from '../types/todo'
 
@@ -34,7 +35,7 @@ const TodoContextProvider = ({ children }: { children: ReactNode }) => {
 
     const addTask = (taskTitle: string) => {
         const addedTask = {
-            taskId: Math.random() * 10,
+            taskId: uuidv4(),
             taskTitle,
             isEditing: false,
             isCompleted: false

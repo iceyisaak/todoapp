@@ -14,12 +14,26 @@ This app lets you:
 - A button to delete all tasks
 - A button to edit task
 - A button to delete each task
+- A button to toggle task as completed
 
 
 
-## Technologies
+## Sources, Technologies, and Dependencies
+
+### Sources
+Thumbnail
+https://www.reshot.com/free-svg-icons/item/check-list-3EU5R962XC/
+
+
+### Technologies
 - ReactJS
 - TypeScript
 - SCSS
 - ReactIcons
+
+
+### Dependencies
+```
+
+```
 
