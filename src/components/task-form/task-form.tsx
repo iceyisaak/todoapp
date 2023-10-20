@@ -7,7 +7,7 @@ import style from './task-form.module.scss'
 const TaskForm = () => {
 
     const [text, setText] = useState("")
-    const inputRef = useRef<HTMLInputElement>(null)
+    const inputRef = useRef<HTMLInputElement>(null!)
 
     const {
         addTask,
@@ -36,7 +36,7 @@ const TaskForm = () => {
     useEffect(() => {
         if (taskToEdit?.isEditing) {
             setText(taskToEdit.taskTitle)
-            inputRef.current!.focus()
+            inputRef.current.focus()
         } else {
             setText("")
         }
