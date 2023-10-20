@@ -27,8 +27,13 @@ const TaskItem = ({ data }: TaskItem) => {
 
     return (
         <li className={`${style['TaskItem']}`}>
-            <input type="checkbox" onChange={onToggleTaskAsComplete} checked={data.isCompleted ? true : false} />
-            <span className={`${style['task-name']}`}>
+            <input
+                type="checkbox"
+                onChange={onToggleTaskAsComplete}
+                checked={data.isCompleted ? true : false}
+                className={`${style['checkbox']}`}
+            />
+            <span className={`${style['task-name']} ${data.isCompleted ? `${style['isCompleted']}` : ``}`}>
                 {data.taskTitle}
             </span>
             <MdOutlineEdit onClick={onSelectEditTask} className={`${'pointer'} ${style['item-btn']}`} />

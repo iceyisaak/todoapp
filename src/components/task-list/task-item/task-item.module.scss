@@ -21,4 +21,13 @@
     .item-btn {
         margin-right: 0.5rem;
     }
+
+    .isCompleted {
+        text-decoration: line-through;
+        opacity: 0.25;
+    }
+
+    .checkbox {
+        margin-right: 1rem;
+    }
 }
