@@ -1,19 +1,22 @@
-import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, FormEvent, useRef, useState } from 'react'
 import { MdOutlineAddCircleOutline } from 'react-icons/md'
-import { useTodoContext } from '../../contexts/todo-context'
+// import { useTodoContext } from '../../contexts/todo-context'
+import { v4 as uuidV4 } from 'uuid'
 
 import style from './task-form.module.scss'
+import { useTaskStore } from '../../features/todo-feature/todo-store'
 
 const TaskForm = () => {
 
     const [text, setText] = useState("")
     const inputRef = useRef<HTMLInputElement>(null!)
+    const addTask = useTaskStore((state) => state.addTask)
 
-    const {
-        addTask,
-        editTask,
-        isEditing,
-    } = useTodoContext()
+    // const {
+    //     addTask,
+    //     editTask,
+    //     isEditing,
+    // } = useTodoContext()
 
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -22,26 +25,33 @@ const TaskForm = () => {
 
     const onSubmitHandler = (e: FormEvent) => {
         e.preventDefault()
+        addTask({
+            taskId: uuidV4(),
+            taskTitle: text,
+            isCompleted: false
+        })
 
-        if (isEditing !== null) {
-            editTask(isEditing.taskId, text)
-            setText('')
-        } else {
-            addTask(text)
-            setText('')
-        }
+        setText('')
+
+        // if (isEditing !== null) {
+        //     editTask(isEditing.taskId, text)
+        //     setText('')
+        // } else {
+        //     addTask(text)
+        //     setText('')
+        // }
 
     }
 
 
-    useEffect(() => {
-        if (isEditing !== null) {
-            setText(isEditing.taskTitle)
-            inputRef.current.focus()
-        } else {
-            setText("")
-        }
-    }, [isEditing])
+    // useEffect(() => {
+    //     if (isEditing !== null) {
+    //         setText(isEditing.taskTitle)
+    //         inputRef.current.focus()
+    //     } else {
+    //         setText("")
+    //     }
+    // }, [isEditing])
 
 
     return (

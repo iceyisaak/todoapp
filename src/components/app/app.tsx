@@ -1,4 +1,5 @@
-import { useTodoContext } from '../../contexts/todo-context'
+// import { useTodoContext } from '../../contexts/todo-context'
+import { useTaskStore } from '../../features/todo-feature/todo-store'
 import TaskForm from '../task-form/task-form'
 import TaskList from '../task-list/task-list'
 
@@ -8,7 +9,8 @@ import style from './app.module.scss'
 
 const App = () => {
 
-  const { deleteAllTasks, tasks } = useTodoContext()
+  // const { deleteAllTasks, tasks } = useTodoContext()
+  const { deleteAllTasks, tasks } = useTaskStore((state) => state)
 
   return (
     <>
