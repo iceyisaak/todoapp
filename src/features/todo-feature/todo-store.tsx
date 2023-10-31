@@ -7,6 +7,8 @@ import { Task } from "../../types";
 const taskStore = (set) => ({
 
     tasks: [],
+    isEditing: null,
+    isLoading: false,
 
     addTask: (task: Task) => {
         set((state) => ({
@@ -38,8 +40,20 @@ const taskStore = (set) => ({
         }))
     },
 
-    selectTaskToEdit: () => {
-        alert('selectTaskToEdit()')
+    selectTaskToEdit: (task: Task) => {
+        console.log('selectTaskToEdit(): ', task)
+    },
+
+    editTask: (id: string, title: string) => {
+        console.log('editTask(): ', id, title)
+    },
+
+    setIsEditing: () => {
+        alert('setIsEditing()')
+    },
+
+    setIsLoading: () => {
+        alert('setIsLoading()')
     }
 
 })

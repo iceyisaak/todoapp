@@ -23,12 +23,7 @@ const TaskItem = ({ data }: TaskItem) => {
     )
 
     const onDeleteTask = () => {
-        // deleteTask(data.taskId)
-        // console.log('data.taskId: ', data.taskId)
-        const id = data.taskId
         deleteTask(data.taskId)
-        console.log({ id })
-
     }
 
     const onSelectEditTask = () => {
