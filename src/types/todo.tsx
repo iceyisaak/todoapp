@@ -8,7 +8,7 @@ export type Task = {
 
 export type TodoContext = {
     tasks: Task[],
-    addTask: (taskTitle: string) => void,
+    addTask: (task: Task) => void,
     deleteTask: (taskId: string) => void,
     selectTaskToEdit: (task: Task) => void,
     editTask: (taskId: string, tastTitle: string) => void,
