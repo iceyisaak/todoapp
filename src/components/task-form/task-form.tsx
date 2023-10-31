@@ -1,6 +1,5 @@
 import { ChangeEvent, FormEvent, useRef, useState } from 'react'
 import { MdOutlineAddCircleOutline } from 'react-icons/md'
-// import { useTodoContext } from '../../contexts/todo-context'
 import { v4 as uuidV4 } from 'uuid'
 
 import style from './task-form.module.scss'
@@ -10,13 +9,12 @@ const TaskForm = () => {
 
     const [text, setText] = useState("")
     const inputRef = useRef<HTMLInputElement>(null!)
-    const addTask = useTaskStore((state) => state.addTask)
-
-    // const {
-    //     addTask,
-    //     editTask,
-    //     isEditing,
-    // } = useTodoContext()
+    const { addTask, isEditing, editTask } = useTaskStore(
+        (state) => ({
+            addTask: state.addTask,
+            // isEditing: state.isEditing,
+            // editTask: state.editTask
+        }))
 
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {

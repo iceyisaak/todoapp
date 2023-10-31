@@ -1,7 +1,4 @@
 import { MdOutlineDelete, MdOutlineEdit } from 'react-icons/md'
-// import { useTodoContext } from '../../../contexts/todo-context'
-// import { deleteTask } from '../../../features/todo-feature/todo-slice'
-
 
 import { type Task } from '../../../types'
 import style from './task-item.module.scss'
@@ -13,12 +10,11 @@ type TaskItem = {
 
 const TaskItem = ({ data }: TaskItem) => {
 
-    // const { deleteTask, selectTaskToEdit, toggleTaskAsCompleted } = useTodoContext()
     const { deleteTask, toggleTaskAsCompleted, selectTaskToEdit } = useTaskStore(
         (state) => ({
             deleteTask: state.deleteTask,
             toggleTaskAsCompleted: state.toggleTaskAsCompleted,
-            selectTaskToEdit: state.selectTaskToEdit
+            selectTaskToEdit: state.selectTaskToEdit,
         })
     )
 
