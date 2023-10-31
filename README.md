@@ -1,6 +1,6 @@
 # TodoApp
-###### ver: React Context API
-###### 20231018
+###### ver: React Zustand
+###### 20231031
 
 This app lets you:
 1. Create tasks
@@ -36,7 +36,7 @@ https://www.reshot.com/free-svg-icons/item/check-list-3EU5R962XC/
 
 ### Technologies
 - ReactJS
-- React ContextAPI
+- Zustand
 - TypeScript
 - SCSS
 - ReactIcons

@@ -10,8 +10,9 @@ const TaskList = () => {
 
 
     // const { tasks, isLoading } = useTodoContext()
-    const { tasks } = useTaskStore((state) => ({
-        tasks: state.tasks
+    const { tasks, isLoading } = useTaskStore((state) => ({
+        tasks: state.tasks,
+        isLoading: state.isLoading
     }))
 
     console.log('tasks: TaskList ', tasks)
