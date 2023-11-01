@@ -1,16 +1,21 @@
-// import { useTodoContext } from '../../contexts/todo-context'
-import { useTaskStore } from '../../features/todo-feature/todo-store'
+import { deleteAllTasks, useTaskStore } from '../../features/todo-feature/todo-store'
 import TaskForm from '../task-form/task-form'
 import TaskList from '../task-list/task-list'
 
 import { MdOutlineClose } from 'react-icons/md'
-
 import style from './app.module.scss'
 
 const App = () => {
 
-  // const { deleteAllTasks, tasks } = useTodoContext()
-  const { deleteAllTasks, tasks } = useTaskStore((state) => state)
+  const { tasks } = useTaskStore((state) => state)
+
+  const deleteAllTasksHandler = () => {
+    const deleteAllTasksConfirm = confirm('Delete All Tasks?')
+    if (deleteAllTasksConfirm) {
+      deleteAllTasks()
+    }
+  }
+
 
   return (
     <>
@@ -20,7 +25,7 @@ const App = () => {
             tasks.length > 0 &&
             <MdOutlineClose
               title='Delete All Tasks'
-              onClick={deleteAllTasks}
+              onClick={deleteAllTasksHandler}
               className={`
                 ${'pointer'}
                 ${style['btn-delall']}
@@ -30,7 +35,7 @@ const App = () => {
           }
           <header className={`${style['header']}`}>
             <h1 className={`${style['h1']}`}>TodoApp</h1>
-            <h4 className={`${style['h4']}`}>React Context API</h4>
+            <h4 className={`${style['h4']}`}>ReactTS Zustand</h4>
           </header>
           <TaskForm />
           <TaskList />

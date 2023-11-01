@@ -1,20 +1,19 @@
-import { ChangeEvent, FormEvent, useRef, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react'
 import { MdOutlineAddCircleOutline } from 'react-icons/md'
 import { v4 as uuidV4 } from 'uuid'
 
 import style from './task-form.module.scss'
-import { useTaskStore } from '../../features/todo-feature/todo-store'
+// import { useTaskStore } from '../../features/todo-feature/todo-store'
+import { shallow } from 'zustand/shallow'
+import { addTask, editTask, useTaskStore, setIsEditingDone } from '../../features/todo-feature/todo-store'
+
+
 
 const TaskForm = () => {
 
     const [text, setText] = useState("")
     const inputRef = useRef<HTMLInputElement>(null!)
-    const { addTask, isEditing, editTask } = useTaskStore(
-        (state) => ({
-            addTask: state.addTask,
-            // isEditing: state.isEditing,
-            // editTask: state.editTask
-        }))
+    const { isEditing } = useTaskStore((state) => state)
 
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -22,34 +21,42 @@ const TaskForm = () => {
     }
 
     const onSubmitHandler = (e: FormEvent) => {
-        e.preventDefault()
-        addTask({
-            taskId: uuidV4(),
-            taskTitle: text,
-            isCompleted: false
-        })
 
-        setText('')
 
-        // if (isEditing !== null) {
-        //     editTask(isEditing.taskId, text)
-        //     setText('')
-        // } else {
-        //     addTask(text)
-        //     setText('')
-        // }
+        if (isEditing === null) {
+
+            e.preventDefault()
+            addTask({
+                taskId: uuidV4(),
+                taskTitle: text,
+                isCompleted: false
+            })
+            setText('')
+        } else if (isEditing !== null) {
+            editTask(isEditing.taskId, text)
+            setText('')
+            setIsEditingDone()
+        }
 
     }
 
 
-    // useEffect(() => {
-    //     if (isEditing !== null) {
-    //         setText(isEditing.taskTitle)
-    //         inputRef.current.focus()
-    //     } else {
-    //         setText("")
-    //     }
-    // }, [isEditing])
+    useEffect(() => {
+        console.log('isEditing: ', isEditing)
+        const unsub = useTaskStore.subscribe(
+            (state) => state.isEditing,
+            (isEditing) => {
+                if (isEditing !== null) {
+                    setText(isEditing?.taskTitle)
+                    inputRef.current.focus()
+                } else {
+                    setText('')
+                }
+            },
+            { equalityFn: shallow }
+        )
+        return unsub
+    }, [])
 
 
     return (
