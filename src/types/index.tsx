@@ -1,1 +1,2 @@
-export type { Task, TodoContext, taskInitialState } from './todo'
+export type { Task, TaskInitialState } from './todo';
+

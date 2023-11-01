@@ -1,10 +1,11 @@
 import { create } from "zustand";
 import { persist, subscribeWithSelector } from "zustand/middleware";
 
-import { Task, TodoContext } from "../../types";
+import { Task, TaskInitialState } from "../../types";
 
 
-const taskInitialState: TodoContext = {
+
+const taskInitialState: TaskInitialState = {
     tasks: [],
     isEditing: null,
     isLoading: false
@@ -18,6 +19,7 @@ export const useTaskStore = create<typeof taskInitialState>()(
         )
     )
 )
+
 
 export const addTask = (task: Task) => {
     useTaskStore.setState(
