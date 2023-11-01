@@ -1,12 +1,10 @@
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react'
 import { MdOutlineAddCircleOutline } from 'react-icons/md'
 import { v4 as uuidV4 } from 'uuid'
+import { shallow } from 'zustand/shallow'
+import { addTask, editTask, setIsEditingDone, useTaskStore } from '../../features/todo-feature/todo-store'
 
 import style from './task-form.module.scss'
-// import { useTaskStore } from '../../features/todo-feature/todo-store'
-import { shallow } from 'zustand/shallow'
-import { addTask, editTask, useTaskStore, setIsEditingDone } from '../../features/todo-feature/todo-store'
-
 
 
 const TaskForm = () => {
@@ -21,11 +19,9 @@ const TaskForm = () => {
     }
 
     const onSubmitHandler = (e: FormEvent) => {
-
+        e.preventDefault()
 
         if (isEditing === null) {
-
-            e.preventDefault()
             addTask({
                 taskId: uuidV4(),
                 taskTitle: text,
@@ -42,7 +38,6 @@ const TaskForm = () => {
 
 
     useEffect(() => {
-        console.log('isEditing: ', isEditing)
         const unsub = useTaskStore.subscribe(
             (state) => state.isEditing,
             (isEditing) => {

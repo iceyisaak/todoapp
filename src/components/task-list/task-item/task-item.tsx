@@ -1,9 +1,8 @@
 import { MdOutlineDelete, MdOutlineEdit } from 'react-icons/md'
+import { deleteTask, selectTaskToEdit, toggleTaskAsCompleted } from '../../../features/todo-feature/todo-store'
 
 import { type Task } from '../../../types'
 import style from './task-item.module.scss'
-// import { useTaskStore } from '../../../features/todo-feature/todo-store'
-import { deleteTask, toggleTaskAsCompleted, selectTaskToEdit } from '../../../features/todo-feature/todo-store'
 
 
 type TaskItem = {
@@ -12,13 +11,6 @@ type TaskItem = {
 
 const TaskItem = ({ data }: TaskItem) => {
 
-    // const { deleteTask, toggleTaskAsCompleted, selectTaskToEdit } = useTaskStore(
-    //     (state) => ({
-    //         deleteTask: state.deleteTask,
-    //         toggleTaskAsCompleted: state.toggleTaskAsCompleted,
-    //         selectTaskToEdit: state.selectTaskToEdit,
-    //     })
-    // )
 
     const onDeleteTask = () => {
         const deleteTaskConfirm = confirm('Delete this task?')
