@@ -12,18 +12,18 @@ type TaskItem = {
 const TaskItem = ({ data }: TaskItem) => {
 
 
-    const onDeleteTask = () => {
+    const deleteTaskHandler = () => {
         const deleteTaskConfirm = confirm('Delete this task?')
         if (deleteTaskConfirm) {
             deleteTask(data.taskId)
         }
     }
 
-    const onSelectEditTask = () => {
+    const selectEditTaskHandler = () => {
         selectTaskToEdit(data)
     }
 
-    const onToggleTaskAsComplete = () => {
+    const toggleTaskAsCompleteHandler = () => {
         toggleTaskAsCompleted(data.taskId)
     }
 
@@ -31,7 +31,7 @@ const TaskItem = ({ data }: TaskItem) => {
         <li className={`${style['TaskItem']}`} key={data.taskId}>
             <input
                 type="checkbox"
-                onChange={onToggleTaskAsComplete}
+                onChange={toggleTaskAsCompleteHandler}
                 checked={data.isCompleted ? true : false}
                 className={`${style['checkbox']}`}
             />
@@ -39,11 +39,11 @@ const TaskItem = ({ data }: TaskItem) => {
                 {data.taskTitle}
             </span>
             <MdOutlineEdit
-                onClick={onSelectEditTask}
+                onClick={selectEditTaskHandler}
                 className={`${'pointer'} ${style['item-btn']}`}
             />
             <MdOutlineDelete
-                onClick={onDeleteTask}
+                onClick={deleteTaskHandler}
                 className={`${'pointer'} ${style['item-btn']}`}
             />
         </li>
