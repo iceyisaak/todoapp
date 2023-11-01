@@ -8,6 +8,13 @@ This app lets you:
 3. Update tasks
 4. Delete tasks
 
+Different versions avaialble with respective branch names:
+- master: Latest version
+- react-query: Implementation of React Query with JSON Server
+- jotai: Implementation of Jotai as the state manager
+- zustand: Implementation of Zustand as the state manager
+- context-api: original version using react context API
+
 
 ## Features
 - Simple form input
@@ -44,15 +51,21 @@ https://www.reshot.com/free-svg-icons/item/check-list-3EU5R962XC/
 
 ### Dependencies
 ```json
- "react": "^18.2.0",
+ "dependencies": {
+    "@reduxjs/toolkit": "^1.9.7",
+    "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
-    "uuid": "^9.0.0"
+    "react-redux": "^8.1.3",
+    "uuid": "^9.0.0",
+    "zustand": "^4.4.4"
+  },
 ```
 
 ### DevDependencies
 ```json
-   "@types/react": "^18.2.15",
+ "devDependencies": {
+    "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/uuid": "^9.0.2",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
@@ -64,6 +77,7 @@ https://www.reshot.com/free-svg-icons/item/check-list-3EU5R962XC/
     "sass": "^1.65.1",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
+  }
 ```
 
 ## 

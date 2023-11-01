@@ -19,7 +19,6 @@
     "zustand": "^4.4.4"
   },
   "devDependencies": {
-    "@types/debounce": "^1.2.3",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/uuid": "^9.0.2",
