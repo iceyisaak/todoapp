@@ -67,7 +67,9 @@ const TaskForm = () => {
                 ref={inputRef}
             />
             <button className={`${style['btn']}`}>
-                <MdOutlineAddCircleOutline className={`${style['btn-text']} ${'pointer'}`} />
+                <MdOutlineAddCircleOutline
+                    className={`${style['btn-text']} ${'pointer'}`}
+                />
             </button>
         </form>
     )
