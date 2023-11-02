@@ -1,6 +1,6 @@
 # TodoApp
-###### ver: React Zustand
-###### 20231031
+###### ver: React Jotai
+###### 20231101
 
 This app lets you:
 1. Create tasks
@@ -44,7 +44,7 @@ https://www.reshot.com/free-svg-icons/item/check-list-3EU5R962XC/
 
 ### Technologies
 - ReactJS
-- Zustand
+- Jotai
 - TypeScript
 - SCSS
 - ReactIcons
