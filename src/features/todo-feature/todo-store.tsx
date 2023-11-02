@@ -1,8 +1,16 @@
+import { v4 as uuidV4 } from 'uuid';
 import { create } from "zustand";
 import { persist, subscribeWithSelector } from "zustand/middleware";
 
+import { atom } from "jotai";
+import { atomWithStorage, RESET } from 'jotai/utils';
 import { Task, TaskInitialState } from "../../types";
 
+
+
+export const tasksAtom = atomWithStorage<Task[]>('task-list', [])
+export const newTaskAtom = atom('')
+export const isLoadingAtom = atom(false)
 
 
 const taskInitialState: TaskInitialState = {
@@ -21,25 +29,70 @@ export const useTaskStore = create<typeof taskInitialState>()(
 )
 
 
-export const addTask = (task: Task) => {
-    useTaskStore.setState(
-        (state) => ({
-            tasks: [...state.tasks, task]
-        })
+export const addTaskAtom = atom(
+    () => '',
+    (get, set) => {
+        set(tasksAtom, addTask(get(tasksAtom), get(newTaskAtom)))
+        set(newTaskAtom, '')
+    }
+)
+
+export const removeTaskAtom = atom(
+    () => '',
+    (get, set, id: string) => {
+        set(tasksAtom, removeTask(get(tasksAtom), id))
+    }
+)
+
+export const removeAllTasksAtom = atom(
+    () => '',
+    (_, set) => {
+        set(tasksAtom, RESET)
+    }
+)
+
+
+const addTask = (tasks: Task[], text: string) => {
+    return [
+        ...tasks,
+        {
+            taskId: uuidV4(),
+            taskTitle: text,
+            isCompleted: false
+        }
+    ]
+}
+
+const removeTask = (tasks: Task[], id: string) => {
+    return tasks.filter(
+        (task) => {
+            return task.taskId !== id
+        }
     )
 }
 
-export const deleteTask = (id: string) => {
-    useTaskStore.setState(
-        (state) => ({
-            tasks: state.tasks.filter(
-                (task) => {
-                    return task.taskId !== id
-                }
-            )
-        })
-    )
-}
+
+
+
+// export const addTask = (task: Task) => {
+//     useTaskStore.setState(
+//         (state) => ({
+//             tasks: [...state.tasks, task]
+//         })
+//     )
+// }
+
+// export const deleteTask = (id: string) => {
+//     useTaskStore.setState(
+//         (state) => ({
+//             tasks: state.tasks.filter(
+//                 (task) => {
+//                     return task.taskId !== id
+//                 }
+//             )
+//         })
+//     )
+// }
 
 export const deleteAllTasks = () => {
     useTaskStore.setState(

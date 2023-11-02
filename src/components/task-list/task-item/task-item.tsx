@@ -1,8 +1,14 @@
 import { MdOutlineDelete, MdOutlineEdit } from 'react-icons/md'
-import { deleteTask, selectTaskToEdit, toggleTaskAsCompleted } from '../../../features/todo-feature/todo-store'
+import {
+    removeTaskAtom,
+    // deleteTask,
+    selectTaskToEdit,
+    toggleTaskAsCompleted
+} from '../../../features/todo-feature/todo-store'
 
 import { type Task } from '../../../types'
 import style from './task-item.module.scss'
+import { useAtom } from 'jotai'
 
 
 type TaskItem = {
@@ -11,11 +17,12 @@ type TaskItem = {
 
 const TaskItem = ({ data }: TaskItem) => {
 
-
+    const [, removeTask] = useAtom(removeTaskAtom)
     const deleteTaskHandler = () => {
         const deleteTaskConfirm = confirm('Delete this task?')
         if (deleteTaskConfirm) {
-            deleteTask(data.taskId)
+            // deleteTask(data.taskId)
+            removeTask(data.taskId)
         }
     }
 
