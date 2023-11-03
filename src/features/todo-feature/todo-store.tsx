@@ -25,6 +25,7 @@ export const deleteAllTasksAtom = atom(
     null,
     (_, set) => {
         set(tasksAtom, RESET)
+        set(isEditingAtom, null)
     }
 )
 
