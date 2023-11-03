@@ -1,15 +1,12 @@
-import { ChangeEvent, FormEvent, useEffect, useRef } from 'react'
-import { MdOutlineAddCircleOutline } from 'react-icons/md'
-import {
-    addTaskAtom,
-    editTaskAtom,
-    isEditingAtom,
-    newTaskAtom,
-    // setIsEditingDone
-} from '../../features/todo-feature/todo-store'
-
 import { useAtom } from 'jotai'
+import { ChangeEvent, FormEvent, useEffect, useRef } from 'react'
+import { addTaskAtom, editTaskAtom } from '../../features/todo-feature/todo-store'
+import { isEditingAtom, newTaskAtom } from '../../features/todo-feature/todo-initialstate'
+
+
+import { MdOutlineAddCircleOutline } from 'react-icons/md'
 import style from './task-form.module.scss'
+
 
 
 const TaskForm = () => {
@@ -34,9 +31,7 @@ const TaskForm = () => {
         } else if (isEditing !== null) {
             editTask(isEditing.taskId, text)
             setText('')
-            // setIsEditingDone()
         }
-
     }
 
 

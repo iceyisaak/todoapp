@@ -1,12 +1,8 @@
-import { MdOutlineDelete, MdOutlineEdit } from 'react-icons/md'
-import {
-    removeTaskAtom,
-    // deleteTask,
-    selectTaskToEditAtom,
-    toggleTaskAsCompletedAtom
-} from '../../../features/todo-feature/todo-store'
-
 import { useAtom } from 'jotai'
+import { deleteTaskAtom, selectTaskToEditAtom, toggleTaskAsCompletedAtom } from '../../../features/todo-feature/todo-store'
+
+
+import { MdOutlineDelete, MdOutlineEdit } from 'react-icons/md'
 import { type Task } from '../../../types'
 import style from './task-item.module.scss'
 
@@ -17,20 +13,19 @@ type TaskItem = {
 
 const TaskItem = ({ data }: TaskItem) => {
 
-    const [, removeTask] = useAtom(removeTaskAtom)
+    const [, deleteTask] = useAtom(deleteTaskAtom)
     const [, toggleTaskAsCompleted] = useAtom(toggleTaskAsCompletedAtom)
     const [, selectTaskToEdit] = useAtom(selectTaskToEditAtom)
 
     const deleteTaskHandler = () => {
         const deleteTaskConfirm = confirm('Delete this task?')
         if (deleteTaskConfirm) {
-            removeTask(data.taskId)
+            deleteTask(data.taskId)
         }
     }
 
     const selectEditTaskHandler = () => {
         selectTaskToEdit(data)
-        // selectTaskToEdit(data)
     }
 
     const toggleTaskAsCompleteHandler = () => {
@@ -59,7 +54,6 @@ const TaskItem = ({ data }: TaskItem) => {
         </li>
     )
 }
-
 
 
 export default TaskItem

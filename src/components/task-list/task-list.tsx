@@ -1,7 +1,7 @@
-import { isLoadingAtom, tasksAtom } from "../../features/todo-feature/todo-store"
+import { useAtom } from "jotai"
+import { isLoadingAtom, tasksAtom } from "../../features/todo-feature/todo-initialstate"
 import TaskItem from "./task-item/task-item"
 
-import { useAtom } from "jotai"
 import style from './task-list.module.scss'
 
 
@@ -10,15 +10,6 @@ const TaskList = () => {
 
     const [tasks] = useAtom(tasksAtom)
     const [isLoading] = useAtom(isLoadingAtom)
-
-
-    // const { tasks, isLoading } = useTaskStore(
-    //     useShallow(
-    //         (state) => ({
-    //             tasks: state.tasks,
-    //             isLoading: state.isLoading
-    //         }))
-    // )
 
     return (
         <div className={`${style['TaskList']}`}>
