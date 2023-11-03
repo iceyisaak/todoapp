@@ -1,31 +1,24 @@
-import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useRef } from 'react'
 import { MdOutlineAddCircleOutline } from 'react-icons/md'
-import { v4 as uuidV4 } from 'uuid'
-import { shallow } from 'zustand/shallow'
 import {
-    // addTask,
     addTaskAtom,
-    editTask,
+    editTaskAtom,
+    isEditingAtom,
     newTaskAtom,
-    setIsEditingDone,
-    useTaskStore
+    // setIsEditingDone
 } from '../../features/todo-feature/todo-store'
 
-import style from './task-form.module.scss'
 import { useAtom } from 'jotai'
+import style from './task-form.module.scss'
 
 
 const TaskForm = () => {
 
-    // const [text, setText] = useState("")
     const inputRef = useRef<HTMLInputElement>(null!)
-    const { isEditing } = useTaskStore((state) => state)
-
-
     const [, addTask] = useAtom(addTaskAtom)
+    const [, editTask] = useAtom(editTaskAtom)
+    const [isEditing] = useAtom(isEditingAtom)
     const [text, setText] = useAtom(newTaskAtom)
-
-
 
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -36,37 +29,25 @@ const TaskForm = () => {
         e.preventDefault()
 
         if (isEditing === null) {
-            // addTask({
-            //     taskId: uuidV4(),
-            //     taskTitle: text,
-            //     isCompleted: false
-            // })
             addTask()
             setText('')
         } else if (isEditing !== null) {
             editTask(isEditing.taskId, text)
             setText('')
-            setIsEditingDone()
+            // setIsEditingDone()
         }
 
     }
 
 
     useEffect(() => {
-        const unsub = useTaskStore.subscribe(
-            (state) => state.isEditing,
-            (isEditing) => {
-                if (isEditing !== null) {
-                    setText(isEditing?.taskTitle)
-                    inputRef.current.focus()
-                } else {
-                    setText('')
-                }
-            },
-            { equalityFn: shallow }
-        )
-        return unsub
-    }, [])
+        if (isEditing) {
+            setText(isEditing?.taskTitle)
+            inputRef.current.focus()
+        } else {
+            setText('')
+        }
+    }, [isEditing])
 
 
     return (

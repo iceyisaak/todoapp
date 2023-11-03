@@ -11,6 +11,7 @@ import { Task, TaskInitialState } from "../../types";
 export const tasksAtom = atomWithStorage<Task[]>('task-list', [])
 export const newTaskAtom = atom('')
 export const isLoadingAtom = atom(false)
+export const isEditingAtom = atom<null | Task>(null)
 
 
 const taskInitialState: TaskInitialState = {
@@ -53,6 +54,29 @@ export const removeAllTasksAtom = atom(
 )
 
 
+export const toggleTaskAsCompletedAtom = atom(
+    () => '',
+    (get, set, id: string) => {
+        set(tasksAtom, toggleTaskAsCompleted(get(tasksAtom), id))
+    }
+)
+
+export const selectTaskToEditAtom = atom(
+    () => '',
+    (_, set, task: Task) => {
+        set(isEditingAtom, task)
+    }
+)
+
+export const editTaskAtom = atom(
+    () => '',
+    (get, set, taskId: string, taskTitle: string) => {
+        set(tasksAtom, editTask(get(tasksAtom), taskId, taskTitle))
+        set(isEditingAtom, null)
+    }
+)
+
+
 const addTask = (tasks: Task[], text: string) => {
     return [
         ...tasks,
@@ -72,7 +96,32 @@ const removeTask = (tasks: Task[], id: string) => {
     )
 }
 
+const toggleTaskAsCompleted = (tasks: Task[], id: string) => {
+    return tasks.map(
+        (task) => (
+            task.taskId === id ?
+                { ...task, isCompleted: !task.isCompleted } :
+                task
+        )
+    )
+}
 
+const editTask = (tasks: Task[], taskId: string, taskTitle: string) => {
+    return tasks.map(
+        (task) => (
+            task.taskId === taskId ?
+                { ...task, taskTitle } :
+                task
+        )
+    )
+}
+
+// const selectTaskToEdit = (isEditingAtom: Task[] | null, task: Task) => {
+//     console.log('task: ', task)
+//     console.log('isEditingAtom: ', isEditingAtom)
+//     return
+//     // return console.log('task: ', isEditingAtom)
+// }
 
 
 // export const addTask = (task: Task) => {
@@ -103,57 +152,57 @@ const removeTask = (tasks: Task[], id: string) => {
 //     )
 // }
 
-export const toggleTaskAsCompleted = (id: string) => {
-    useTaskStore.setState(
-        (state) => ({
-            tasks: state.tasks.map(
-                (task) => (
-                    task.taskId === id ?
-                        { ...task, isCompleted: !task.isCompleted } :
-                        task
-                )
-            )
-        }))
-}
+// export const toggleTaskAsCompleted = (id: string) => {
+//     useTaskStore.setState(
+//         (state) => ({
+//             tasks: state.tasks.map(
+//                 (task) => (
+//                     task.taskId === id ?
+//                         { ...task, isCompleted: !task.isCompleted } :
+//                         task
+//                 )
+//             )
+//         }))
+// }
 
-export const selectTaskToEdit = (task: Task) => {
-    useTaskStore.setState(
-        (state) => ({
-            isEditing: state.isEditing = {
-                taskId: task.taskId,
-                taskTitle: task.taskTitle,
-                isCompleted: task.isCompleted
-            }
-        })
-    )
-}
+// export const selectTaskToEdit = (task: Task) => {
+//     useTaskStore.setState(
+//         (state) => ({
+//             isEditing: state.isEditing = {
+//                 taskId: task.taskId,
+//                 taskTitle: task.taskTitle,
+//                 isCompleted: task.isCompleted
+//             }
+//         })
+//     )
+// }
 
-export const editTask = (taskId: string, taskTitle: string) => {
-    useTaskStore.setState(
-        (state) => ({
-            tasks: state.tasks.map(
-                (task) => (
-                    task.taskId === taskId ?
-                        { ...task, taskTitle } :
-                        task
-                )
-            )
-        })
-    )
-}
+// export const editTask = (taskId: string, taskTitle: string) => {
+//     useTaskStore.setState(
+//         (state) => ({
+//             tasks: state.tasks.map(
+//                 (task) => (
+//                     task.taskId === taskId ?
+//                         { ...task, taskTitle } :
+//                         task
+//                 )
+//             )
+//         })
+//     )
+// }
 
-export const setIsEditingDone = () => {
-    useTaskStore.setState(
-        (state) => ({
-            isEditing: state.isEditing = null
-        }))
-}
+// export const setIsEditingDone = () => {
+//     useTaskStore.setState(
+//         (state) => ({
+//             isEditing: state.isEditing = null
+//         }))
+// }
 
-export const setIsLoading = (action: boolean) => {
-    useTaskStore.setState(
-        (state) => ({
-            isLoading: state.isLoading === action
-        }))
-}
+// export const setIsLoading = (action: boolean) => {
+//     useTaskStore.setState(
+//         (state) => ({
+//             isLoading: state.isLoading === action
+//         }))
+// }
 
 
