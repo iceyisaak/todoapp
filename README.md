@@ -53,12 +53,11 @@ https://www.reshot.com/free-svg-icons/item/check-list-3EU5R962XC/
 
 ### Dependencies
 ```json
-"dependencies": {
+  "dependencies": {
     "jotai": "^2.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
-    "react-redux": "^8.1.3",
     "uuid": "^9.0.0"
   },
 ```
