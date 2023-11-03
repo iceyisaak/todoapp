@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai'
-import { deleteAllTasksAtom } from '../../features/todo-feature/todo-store'
 import { tasksAtom } from '../../features/todo-feature/todo-initialstate'
+import { deleteAllTasksAtom } from '../../features/todo-feature/todo-store'
 
 import { AppHeader } from '../app-header/app-header'
 import TaskForm from '../task-form/task-form'
@@ -26,27 +26,25 @@ const App = () => {
 
 
   return (
-    <>
-      <div className={`${style['container']}`}>
-        <main className={`${style['main']}`}>
-          {
-            tasks.length > 0 &&
-            <MdOutlineClose
-              title='Delete All Tasks'
-              onClick={deleteAllTasksHandler}
-              className={`
+    <div className={`${style['container']}`}>
+      <main className={`${style['main']}`}>
+        {
+          tasks.length > 0 &&
+          <MdOutlineClose
+            title='Delete All Tasks'
+            onClick={deleteAllTasksHandler}
+            className={`
                 ${'pointer'}
                 ${style['btn-delall']}
                 ${style['btn-delete-all']}
               `}
-            />
-          }
-          <AppHeader />
-          <TaskForm />
-          <TaskList />
-        </main>
-      </div>
-    </>
+          />
+        }
+        <AppHeader />
+        <TaskForm />
+        <TaskList />
+      </main>
+    </div>
   )
 }
 
