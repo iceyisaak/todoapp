@@ -16,14 +16,6 @@ Different versions avaialble with respective branch names:
 - context-api: original version using react context API
 
 
-Different versions avaialble with respective branch names:
-- master: Latest version
-- react-query: Implementation of React Query with JSON Server
-- jotai: Implementation of Jotai as the state manager
-- zustand: Implementation of Zustand as the state manager
-- context-api: original version using react context API
-
-
 ## Features
 - Simple form input
 - Simple list that display entered tasks
