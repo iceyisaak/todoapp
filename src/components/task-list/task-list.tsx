@@ -1,5 +1,5 @@
 import { useAtom } from "jotai"
-import { isLoadingAtom, tasksAtom } from "../../features/todo-feature/todo-initialstate"
+import { isLoadingAtom, tasksAtom, tasksSplitAtom } from "../../features/todo-feature/todo-initialstate"
 import TaskItem from "./task-item/task-item"
 
 import style from './task-list.module.scss'
@@ -8,7 +8,8 @@ import style from './task-list.module.scss'
 
 const TaskList = () => {
 
-    const [tasks] = useAtom(tasksAtom)
+    // const [tasks] = useAtom(tasksAtom)
+    const [tasks] = useAtom(tasksSplitAtom)
     const [isLoading] = useAtom(isLoadingAtom)
 
     return (
@@ -22,8 +23,10 @@ const TaskList = () => {
                         :
                         tasks.map((task) =>
                             <TaskItem
-                                key={task.taskId}
-                                data={task}
+                                // key={task.taskId}
+                                // data={task}
+                                key={task.toString()}
+                                atom={task}
                             />
                         )
                 }

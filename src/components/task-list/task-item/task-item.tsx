@@ -1,4 +1,4 @@
-import { useAtom } from 'jotai'
+import { PrimitiveAtom, useAtom } from 'jotai'
 import { deleteTaskAtom, selectTaskToEditAtom, toggleTaskAsCompletedAtom } from '../../../features/todo-feature/todo-store'
 
 
@@ -8,10 +8,14 @@ import style from './task-item.module.scss'
 
 
 type TaskItem = {
-    data: Task
+    // data: Task
+    atom: PrimitiveAtom<Task>
 }
 
-const TaskItem = ({ data }: TaskItem) => {
+// const TaskItem = ({ data }: TaskItem) => {
+const TaskItem = ({ atom }: TaskItem) => {
+
+    const [data] = useAtom(atom)
 
     const [, deleteTask] = useAtom(deleteTaskAtom)
     const [, toggleTaskAsCompleted] = useAtom(toggleTaskAsCompletedAtom)
