@@ -1,11 +1,11 @@
-import { deleteAllTasks, removeAllTasksAtom, tasksAtom, useTaskStore } from '../../features/todo-feature/todo-store'
+import { removeAllTasksAtom, tasksAtom } from '../../features/todo-feature/todo-store'
+import { AppHeader } from '../app-header/app-header'
 import TaskForm from '../task-form/task-form'
 import TaskList from '../task-list/task-list'
-import { AppHeader } from '../app-header/app-header'
 
+import { useAtom } from 'jotai'
 import { MdOutlineClose } from 'react-icons/md'
 import style from './app.module.scss'
-import { useAtom } from 'jotai'
 
 
 

@@ -16,6 +16,7 @@ export const isLoadingAtom = atom(false)
 const taskInitialState: TaskInitialState = {
     tasks: [],
     isEditing: null,
+    //loadable util
     isLoading: false
 }
 
@@ -94,13 +95,13 @@ const removeTask = (tasks: Task[], id: string) => {
 //     )
 // }
 
-export const deleteAllTasks = () => {
-    useTaskStore.setState(
-        () => ({
-            tasks: []
-        })
-    )
-}
+// export const deleteAllTasks = () => {
+//     useTaskStore.setState(
+//         () => ({
+//             tasks: []
+//         })
+//     )
+// }
 
 export const toggleTaskAsCompleted = (id: string) => {
     useTaskStore.setState(
