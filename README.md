@@ -1,12 +1,20 @@
 # TodoApp
-###### ver: React Zustand
-###### 20231031
+###### ver: React Jotai
+###### 20231101
 
 This app lets you:
 1. Create tasks
 2. Read tasks
 3. Update tasks
 4. Delete tasks
+
+Different versions avaialble with respective branch names:
+- master: Latest version
+- react-query: Implementation of React Query with JSON Server
+- jotai: Implementation of Jotai as the state manager
+- zustand: Implementation of Zustand as the state manager
+- context-api: original version using react context API
+
 
 Different versions avaialble with respective branch names:
 - master: Latest version
@@ -43,7 +51,7 @@ https://www.reshot.com/free-svg-icons/item/check-list-3EU5R962XC/
 
 ### Technologies
 - ReactJS
-- Zustand
+- Jotai
 - TypeScript
 - SCSS
 - ReactIcons
@@ -64,7 +72,11 @@ https://www.reshot.com/free-svg-icons/item/check-list-3EU5R962XC/
 
 ### DevDependencies
 ```json
+<<<<<<< HEAD
  "devDependencies": {
+=======
+   "devDependencies": {
+>>>>>>> jotai
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/uuid": "^9.0.2",

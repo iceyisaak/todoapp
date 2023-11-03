@@ -1,7 +1,10 @@
-import { deleteAllTasks, useTaskStore } from '../../features/todo-feature/todo-store'
+import { useAtom } from 'jotai'
+import { deleteAllTasksAtom } from '../../features/todo-feature/todo-store'
+import { tasksAtom } from '../../features/todo-feature/todo-initialstate'
+
+import { AppHeader } from '../app-header/app-header'
 import TaskForm from '../task-form/task-form'
 import TaskList from '../task-list/task-list'
-import { AppHeader } from '../app-header/app-header'
 
 import { MdOutlineClose } from 'react-icons/md'
 import style from './app.module.scss'
@@ -10,11 +13,9 @@ import style from './app.module.scss'
 
 const App = () => {
 
-  const { tasks } = useTaskStore(
-    (state) => ({
-      tasks: state.tasks
-    })
-  )
+  const [tasks] = useAtom(tasksAtom)
+  const [, deleteAllTasks] = useAtom(deleteAllTasksAtom)
+
 
   const deleteAllTasksHandler = () => {
     const deleteAllTasksConfirm = confirm('Delete All Tasks?')
