@@ -48,6 +48,7 @@ https://www.reshot.com/free-svg-icons/item/check-list-3EU5R962XC/
 - TypeScript
 - SCSS
 - ReactIcons
+- localStorage
 
 
 ### Dependencies
