@@ -1,0 +1,19 @@
+{
+    "tasks": [
+        {
+            "taskId": "0",
+            "taskTitle": "Grocery shopping",
+            "isCompleted": false
+        },
+        {
+            "taskId": "1",
+            "taskTitle": "Cook food",
+            "isCompleted": false
+        },
+        {
+            "taskId": "2",
+            "taskTitle": "Clean up",
+            "isCompleted": false
+        }
+    ]
+}
