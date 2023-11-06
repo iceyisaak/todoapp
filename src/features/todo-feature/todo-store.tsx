@@ -18,6 +18,7 @@ export const deleteTaskAtom = atom(
     null,
     (get, set, id: string) => {
         set(tasksAtom, deleteTask(get(tasksAtom), id))
+        set(isEditingAtom, null)
     }
 )
 
