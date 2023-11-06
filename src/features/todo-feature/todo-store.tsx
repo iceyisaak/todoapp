@@ -1,9 +1,11 @@
 import { atom } from "jotai";
 import { RESET } from 'jotai/utils';
 import { v4 as uuidV4 } from 'uuid';
+import { isEditingAtom, newTaskAtom, tasksAtom } from "./todo-initialstate";
 
 import { Task } from "../../types";
-import { isEditingAtom, newTaskAtom, tasksAtom } from "./todo-initialstate";
+
+
 
 
 export const addTaskAtom = atom(

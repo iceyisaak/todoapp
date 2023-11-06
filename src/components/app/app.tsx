@@ -8,6 +8,8 @@ import TaskList from '../task-list/task-list'
 
 import { MdOutlineClose } from 'react-icons/md'
 import style from './app.module.scss'
+import { QueryClient } from '@tanstack/query-core'
+import { QueryClientProvider } from '@tanstack/react-query'
 
 
 
@@ -25,26 +27,31 @@ const App = () => {
   }
 
 
+  const queryClient = new QueryClient()
+
   return (
-    <div className={`${style['container']}`}>
-      <main className={`${style['main']}`}>
-        {
-          tasks.length > 0 &&
-          <MdOutlineClose
-            title='Delete All Tasks'
-            onClick={deleteAllTasksHandler}
-            className={`
+    <QueryClientProvider client={queryClient}>
+      <div className={`${style['container']}`}>
+        <main className={`${style['main']}`}>
+          {
+            tasks.length > 0 &&
+            <MdOutlineClose
+              title='Delete All Tasks'
+              onClick={deleteAllTasksHandler}
+              className={`
                 ${'pointer'}
                 ${style['btn-delall']}
                 ${style['btn-delete-all']}
               `}
-          />
-        }
-        <AppHeader />
-        <TaskForm />
-        <TaskList />
-      </main>
-    </div>
+            />
+          }
+          <AppHeader />
+          <TaskForm />
+          <TaskList />
+        </main>
+      </div>
+    </QueryClientProvider>
+
   )
 }
 

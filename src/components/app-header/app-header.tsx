@@ -5,8 +5,7 @@ export const AppHeader = () => {
     return (
         <header className={`${style['header']}`}>
             <h1 className={`${style['h1']}`}>TodoApp</h1>
-            <h4 className={`${style['h4']}`}>ReactTS Jotai</h4>
-            {Math.random()}
+            <h4 className={`${style['h4']}`}>ReactTS + Tanstack Query + Jotai</h4>
         </header>
     )
 }
