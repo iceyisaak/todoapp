@@ -9,7 +9,6 @@ export const fetchAllTasks = () => {
         queryFn: async () => {
             const response = await axios.get('http://localhost:3100/tasks')
             const data: unknown = response.data
-            console.log('data: ', data)
             return data as Task[]
         }
     })

@@ -8,14 +8,12 @@ import style from './task-item.module.scss'
 
 
 type TaskItem = {
-    // data: Task
-    atom: PrimitiveAtom<Task>
+    data: Task
 }
 
-// const TaskItem = ({ data }: TaskItem) => {
-const TaskItem = ({ atom }: TaskItem) => {
 
-    const [data] = useAtom(atom)
+const TaskItem = ({ data }: TaskItem) => {
+
 
     const [, deleteTask] = useAtom(deleteTaskAtom)
     const [, toggleTaskAsCompleted] = useAtom(toggleTaskAsCompletedAtom)
