@@ -29,7 +29,7 @@ const TaskForm = () => {
             addTask()
             setText('')
         } else if (isEditing !== null) {
-            editTask(isEditing.taskId, text)
+            editTask(isEditing.id, text)
             setText('')
         }
     }

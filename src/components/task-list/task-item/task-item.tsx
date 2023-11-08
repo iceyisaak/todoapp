@@ -1,4 +1,4 @@
-import { PrimitiveAtom, useAtom } from 'jotai'
+import { useAtom } from 'jotai'
 import { deleteTaskAtom, selectTaskToEditAtom, toggleTaskAsCompletedAtom } from '../../../features/todo-feature/todo-store'
 
 
@@ -22,7 +22,7 @@ const TaskItem = ({ data }: TaskItem) => {
     const deleteTaskHandler = () => {
         const deleteTaskConfirm = confirm('Delete this task?')
         if (deleteTaskConfirm) {
-            deleteTask(data.taskId)
+            deleteTask(data.id)
         }
     }
 
@@ -31,11 +31,11 @@ const TaskItem = ({ data }: TaskItem) => {
     }
 
     const toggleTaskAsCompleteHandler = () => {
-        toggleTaskAsCompleted(data.taskId)
+        toggleTaskAsCompleted(data.id)
     }
 
     return (
-        <li className={`${style['TaskItem']}`} key={data.taskId}>
+        <li className={`${style['TaskItem']}`} key={data.id}>
             <input
                 type="checkbox"
                 onChange={toggleTaskAsCompleteHandler}

@@ -1,17 +1,17 @@
 {
     "tasks": [
         {
-            "taskId": "0",
+            "id": "0",
             "taskTitle": "Grocery shopping",
             "isCompleted": false
         },
         {
-            "taskId": "1",
+            "id": "1",
             "taskTitle": "Cook food",
             "isCompleted": false
         },
         {
-            "taskId": "2",
+            "id": "2",
             "taskTitle": "Clean up",
             "isCompleted": false
         }
