@@ -43,7 +43,7 @@ const TaskItem = ({ data }: TaskItem) => {
                 className={`${style['checkbox']}`}
             />
             <span className={`${style['task-name']} ${data.isCompleted ? `${style['isCompleted']}` : ``}`}>
-                {data.taskTitle}
+                {data.title}
             </span>
             <MdOutlineEdit
                 onClick={selectEditTaskHandler}

@@ -48,8 +48,8 @@ export const selectTaskToEditAtom = atom(
 
 export const editTaskAtom = atom(
     null,
-    (get, set, taskId: string, taskTitle: string) => {
-        set(tasksAtom, editTask(get(tasksAtom), taskId, taskTitle))
+    (get, set, taskId: string, title: string) => {
+        set(tasksAtom, editTask(get(tasksAtom), taskId, title))
         set(isEditingAtom, null)
     }
 )
@@ -60,8 +60,8 @@ const addTask = (tasks: Task[], text: string) => {
     return [
         ...tasks,
         {
-            taskId: uuidV4(),
-            taskTitle: text,
+            id: uuidV4(),
+            title: text,
             isCompleted: false
         }
     ]
@@ -70,7 +70,7 @@ const addTask = (tasks: Task[], text: string) => {
 const deleteTask = (tasks: Task[], id: string) => {
     return tasks.filter(
         (task) => {
-            return task.taskId !== id
+            return task.id !== id
         }
     )
 }
@@ -78,18 +78,18 @@ const deleteTask = (tasks: Task[], id: string) => {
 const toggleTaskAsCompleted = (tasks: Task[], id: string) => {
     return tasks.map(
         (task) => (
-            task.taskId === id ?
+            task.id === id ?
                 { ...task, isCompleted: !task.isCompleted } :
                 task
         )
     )
 }
 
-const editTask = (tasks: Task[], taskId: string, taskTitle: string) => {
+const editTask = (tasks: Task[], taskId: string, title: string) => {
     return tasks.map(
         (task) => (
-            task.taskId === taskId ?
-                { ...task, taskTitle } :
+            task.id === taskId ?
+                { ...task, title } :
                 task
         )
     )
