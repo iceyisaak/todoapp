@@ -6,7 +6,6 @@ import { AppHeader } from '../app-header/app-header'
 import TaskForm from '../task-form/task-form'
 import TaskList from '../task-list/task-list'
 
-import { QueryClient } from '@tanstack/query-core'
 import { MdOutlineClose } from 'react-icons/md'
 import style from './app.module.scss'
 

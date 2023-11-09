@@ -3,6 +3,7 @@ import { deleteTaskAtom, selectTaskToEditAtom, toggleTaskAsCompletedAtom } from 
 
 
 import { MdOutlineDelete, MdOutlineEdit } from 'react-icons/md'
+import { useAddTask } from '../../../api/tasks-api'
 import { type Task } from '../../../types'
 import style from './task-item.module.scss'
 
@@ -18,6 +19,12 @@ const TaskItem = ({ data }: TaskItem) => {
     const [, deleteTask] = useAtom(deleteTaskAtom)
     const [, toggleTaskAsCompleted] = useAtom(toggleTaskAsCompletedAtom)
     const [, selectTaskToEdit] = useAtom(selectTaskToEditAtom)
+
+    const { isPending, variables } = useAddTask()
+
+    console.log('isPending: ', isPending)
+    console.log('variables: ', variables)
+
 
     const deleteTaskHandler = () => {
         const deleteTaskConfirm = confirm('Delete this task?')
@@ -35,6 +42,7 @@ const TaskItem = ({ data }: TaskItem) => {
     }
 
     return (
+
         <li className={`${style['TaskItem']}`} key={data.id}>
             <input
                 type="checkbox"
@@ -42,7 +50,11 @@ const TaskItem = ({ data }: TaskItem) => {
                 checked={data.isCompleted ? true : false}
                 className={`${style['checkbox']}`}
             />
-            <span className={`${style['task-name']} ${data.isCompleted ? `${style['isCompleted']}` : ``}`}>
+            <span className={`
+                ${style['task-name']}
+                ${data.isCompleted ? `${style['isCompleted']}` : ``}
+                ${isPending ? `${style['isPending']}` : ``}
+                `}>
                 {data.title}
             </span>
             <MdOutlineEdit

@@ -1,29 +1,3 @@
 {
-  "tasks": [
-    {
-      "id": "0",
-      "title": "Grocery shopping",
-      "isCompleted": false
-    },
-    {
-      "id": "1",
-      "title": "Cook food",
-      "isCompleted": false
-    },
-    {
-      "id": "2",
-      "title": "Clean up",
-      "isCompleted": false
-    },
-    {
-      "id": "d20cfa56-062a-46c6-a6ec-c89a0c2533b1",
-      "title": "Watch Movie",
-      "isCompleted": false
-    },
-    {
-      "id": "e8506e0b-ede9-4701-9150-5bf4a5206ad7",
-      "title": "Make popcorns",
-      "isCompleted": false
-    }
-  ]
+    "tasks": []
 }
