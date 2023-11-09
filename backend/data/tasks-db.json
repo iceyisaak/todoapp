@@ -1,3 +1,24 @@
 {
-    "tasks": []
+  "tasks": [
+    {
+      "id": "d279319f-e28d-43f5-b3ae-97397794652d",
+      "title": "Milk",
+      "isCompleted": false
+    },
+    {
+      "id": "a56a6e65-8964-44c3-a3bf-93566084f039",
+      "title": "Fish",
+      "isCompleted": false
+    },
+    {
+      "id": "1eac23c7-4e5a-4e0f-af27-bb4a2eb62d4d",
+      "title": "Cheese",
+      "isCompleted": false
+    },
+    {
+      "id": "d114a60c-349d-4443-9681-23e1f3190a5c",
+      "title": "Broccoli",
+      "isCompleted": false
+    }
+  ]
 }
