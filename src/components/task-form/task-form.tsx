@@ -1,11 +1,9 @@
-import { useAtom } from 'jotai'
+import { useAtom, useSetAtom } from 'jotai'
 import { ChangeEvent, FormEvent, useEffect, useRef } from 'react'
+import { useAddTask, useEditTask } from '../../api/tasks-api'
 import { isEditingAtom, newTaskAtom } from '../../features/todo-feature/todo-initialstate'
-import { editTaskAtom } from '../../features/todo-feature/todo-store'
-
 
 import { MdOutlineAddCircleOutline } from 'react-icons/md'
-import { useAddTask, useEditTask } from '../../api/tasks-api'
 import style from './task-form.module.scss'
 
 
@@ -16,9 +14,7 @@ const TaskForm = () => {
     const { mutate: editTask } = useEditTask()
 
     const inputRef = useRef<HTMLInputElement>(null!)
-    // const [, addTask] = useAtom(addTaskAtom)
-    // const [, editTask] = useAtom(editTaskAtom)
-    const [isEditing] = useAtom(isEditingAtom)
+    const [isEditing, setIsEditing] = useAtom(isEditingAtom)
     const [text, setText] = useAtom(newTaskAtom)
 
 
@@ -30,12 +26,11 @@ const TaskForm = () => {
         e.preventDefault()
 
         if (isEditing === null) {
-            // addTask()
             addTask(text)
             setText('')
         } else if (isEditing !== null) {
-            // editTask(isEditing.id, text)
             editTask({ isEditing, text })
+            setIsEditing(null)
             setText('')
         }
     }
@@ -43,7 +38,6 @@ const TaskForm = () => {
 
     useEffect(() => {
         if (isEditing) {
-            console.log('isEditing: ', isEditing)
             setText(isEditing?.title)
             inputRef.current.focus()
         } else {

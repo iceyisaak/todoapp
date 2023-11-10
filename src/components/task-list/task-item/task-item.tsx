@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai'
-import { deleteTaskAtom, selectTaskToEditAtom, toggleTaskAsCompletedAtom } from '../../../features/todo-feature/todo-store'
+import { selectTaskToEditAtom } from '../../../features/todo-feature/todo-store'
 
 
 import { MdOutlineDelete, MdOutlineEdit } from 'react-icons/md'
@@ -16,8 +16,6 @@ type TaskItem = {
 const TaskItem = ({ data }: TaskItem) => {
 
 
-    // const [, deleteTask] = useAtom(deleteTaskAtom)
-    // const [, toggleTaskAsCompleted] = useAtom(toggleTaskAsCompletedAtom)
     const [, selectTaskToEdit] = useAtom(selectTaskToEditAtom)
 
     const { isPending } = useAddTask()
@@ -29,7 +27,6 @@ const TaskItem = ({ data }: TaskItem) => {
     const deleteTaskHandler = () => {
         const deleteTaskConfirm = confirm('Delete this task?')
         if (deleteTaskConfirm) {
-            // deleteTask(data.id)
             deleteTaskByID(data.id)
         }
     }

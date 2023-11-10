@@ -3,8 +3,7 @@ import axios from "axios"
 import { v4 as uuidV4 } from 'uuid'
 import { BASEURL as APIURL } from "./"
 
-import { Task } from "../types"
-
+import { EditTaskVariables, Task } from "../types"
 
 
 const getAllTasks = async () => {
@@ -49,13 +48,9 @@ const toggleTaskAsCompleted = async (task: Task) => {
     return data as Task
 }
 
-type EditTaskVariables = {
-    isEditing: Task,
-    text: string
-}
+
 
 const editTask = async ({ isEditing: task, text }: EditTaskVariables) => {
-
     const response = await axios.patch(`${APIURL}${task.id}`, { title: text })
     const data = response.data
     return data as Task

@@ -1,2 +1,2 @@
-export type { Task } from './todo';
+export type { Task, EditTaskVariables } from './todo';
 
