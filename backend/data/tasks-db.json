@@ -2,8 +2,8 @@
   "tasks": [
     {
       "id": "cfa99085-0b28-4f91-9f7b-1fa978ddac9f",
-      "title": "Orange",
-      "isCompleted": false
+      "title": "Oranges",
+      "isCompleted": true
     },
     {
       "id": "e0ba33a7-7b30-435b-a47f-dea356872582",
@@ -27,7 +27,12 @@
     },
     {
       "id": "50980157-4591-4234-80bd-f48527080128",
-      "title": "Pizzassss",
+      "title": "Quadro Formagi Pizzas",
+      "isCompleted": false
+    },
+    {
+      "id": "461c8433-236d-458e-b036-9e9c202db95e",
+      "title": "Chicken Salad",
       "isCompleted": false
     }
   ]

@@ -1,4 +1,4 @@
-import { useAtom, useSetAtom } from 'jotai'
+import { useAtom } from 'jotai'
 import { ChangeEvent, FormEvent, useEffect, useRef } from 'react'
 import { useAddTask, useEditTask } from '../../api/tasks-api'
 import { isEditingAtom, newTaskAtom } from '../../features/todo-feature/todo-initialstate'
