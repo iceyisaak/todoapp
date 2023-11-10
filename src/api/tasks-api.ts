@@ -1,12 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
 import { v4 as uuidV4 } from 'uuid'
+import { BASEURL as APIURL } from "./"
 
 import { Task } from "../types"
-
-const APIURL = 'http://localhost:3100/tasks/'
-// const queryClient = new QueryClient
-
 
 
 
@@ -45,9 +42,9 @@ const deleteTaskByID = async (id: string) => {
 // }
 
 const toggleTaskAsCompleted = async (task: Task) => {
-    console.log('id: ', task.id)
     const response = await axios.patch(`${APIURL}${task.id}`, { isCompleted: !task.isCompleted })
-    console.log('response: ', response)
+    const data = response.data
+    return data as Task
 }
 
 
@@ -107,13 +104,11 @@ export const useDeleteAllTasks = () => {
             const prevTasks = currentQuery.getQueryData<Task[]>(['tasks'])
             const taskArray = prevTasks?.map(task => task.id);
             taskArray?.forEach(id => deleteTaskByID(id))
-            // console.log('prevTasks: ', prevTasks)
         },
         // onMutate: async () => {
         //     const prevTasks = currentQuery.getQueryData<Task[]>(['tasks'])
         //     const taskArray = prevTasks?.map(task => task.id);
         //     taskArray?.forEach(id => deleteTaskByID(id))
-        //     // console.log('prevTasks: ', prevTasks)
         // },
         onSettled: () => currentQuery.invalidateQueries({ queryKey: ['tasks'] })
     })
@@ -125,9 +120,6 @@ export const useToggleTaskAsCompleted = () => {
     return useMutation({
         mutationKey: ['toggle-task'],
         mutationFn: toggleTaskAsCompleted,
-        // mutationFn: async () => {
-        //     const prevTasks = currentQuery.getQueryData<Task[]>(['tasks'])
-        // },
         onSettled: () => currentQuery.invalidateQueries({ queryKey: ['tasks'] })
     })
 }
