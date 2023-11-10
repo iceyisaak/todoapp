@@ -44,9 +44,10 @@ const deleteTaskByID = async (id: string) => {
 //     console.log('deleteAllTasks() - DONE')
 // }
 
-const toggleTaskAsCompleted = async (id: string) => {
-    console.log('id: ', id)
-    // return await axios.patch(`${APIURL}${id}`, { isCompleted: !task.isCompleted })
+const toggleTaskAsCompleted = async (task: Task) => {
+    console.log('id: ', task.id)
+    const response = await axios.patch(`${APIURL}${task.id}`, { isCompleted: !task.isCompleted })
+    console.log('response: ', response)
 }
 
 
@@ -61,7 +62,6 @@ export const useGetAllTasks = () => {
 
 
 export const useAddTask = () => {
-
     const currentQuery = useQueryClient()
 
     return useMutation({
@@ -125,7 +125,9 @@ export const useToggleTaskAsCompleted = () => {
     return useMutation({
         mutationKey: ['toggle-task'],
         mutationFn: toggleTaskAsCompleted,
+        // mutationFn: async () => {
+        //     const prevTasks = currentQuery.getQueryData<Task[]>(['tasks'])
+        // },
         onSettled: () => currentQuery.invalidateQueries({ queryKey: ['tasks'] })
-
     })
 }

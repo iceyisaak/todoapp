@@ -41,7 +41,7 @@ const TaskItem = ({ data }: TaskItem) => {
     }
 
     const toggleTaskAsCompleteHandler = () => {
-        toggleTaskAsCompleted(data.id)
+        toggleTaskAsCompleted(data)
     }
 
     return (
