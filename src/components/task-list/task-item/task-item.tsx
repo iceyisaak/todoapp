@@ -24,8 +24,6 @@ const TaskItem = ({ data }: TaskItem) => {
     const { mutate: toggleTaskAsCompleted } = useToggleTaskAsCompleted()
     const { mutate: deleteTaskByID } = useDeleteTaskByID()
 
-    // console.log('isPending: ', isPending)
-    // console.log('variables: ', variables)
 
 
     const deleteTaskHandler = () => {

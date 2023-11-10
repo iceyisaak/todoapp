@@ -14,11 +14,13 @@ const getAllTasks = async () => {
 }
 
 const addTask = (newTask: string) => {
-    return axios.post(APIURL, {
-        id: uuidV4(),
-        title: newTask,
-        isCompleted: false
-    })
+    return axios.post(APIURL,
+        {
+            id: uuidV4(),
+            title: newTask,
+            isCompleted: false
+        }
+    )
 }
 
 const deleteTaskByID = async (id: string) => {
@@ -46,6 +48,19 @@ const toggleTaskAsCompleted = async (task: Task) => {
     const data = response.data
     return data as Task
 }
+
+type EditTaskVariables = {
+    isEditing: Task,
+    text: string
+}
+
+const editTask = async ({ isEditing: task, text }: EditTaskVariables) => {
+
+    const response = await axios.patch(`${APIURL}${task.id}`, { title: text })
+    const data = response.data
+    return data as Task
+}
+
 
 
 
@@ -120,6 +135,16 @@ export const useToggleTaskAsCompleted = () => {
     return useMutation({
         mutationKey: ['toggle-task'],
         mutationFn: toggleTaskAsCompleted,
+        onSettled: () => currentQuery.invalidateQueries({ queryKey: ['tasks'] })
+    })
+}
+
+export const useEditTask = () => {
+    const currentQuery = useQueryClient()
+
+    return useMutation({
+        mutationKey: ['edit-task'],
+        mutationFn: editTask,
         onSettled: () => currentQuery.invalidateQueries({ queryKey: ['tasks'] })
     })
 }
