@@ -25,7 +25,28 @@ const addTask = (newTask: string) => {
 }
 
 const deleteTaskByID = async (id: string) => {
-    return await axios.delete(`http://localhost:3100/tasks/${id}`)
+    const response = await axios.delete(`${APIURL}${id}`)
+    const data = response.data
+    return data as Task[]
+}
+
+// const deleteAllTasks = async () => {
+//     // console.log('deleteAllTasks() - 1')
+//     // const currentQuery = useQueryClient()
+//     // console.log('deleteAllTasks() - 2')
+//     const response = await axios.get(APIURL)
+//     const data = response.data
+
+
+//     const prevTasks = data.getQueryData(['tasks'])
+//     const taskArray = prevTasks?.map(task => task.id);
+//     taskArray?.forEach(id => deleteTaskByID(id))
+//     console.log('deleteAllTasks() - DONE')
+// }
+
+const toggleTaskAsCompleted = async (id: string) => {
+    console.log('id: ', id)
+    // return await axios.patch(`${APIURL}${id}`, { isCompleted: !task.isCompleted })
 }
 
 
@@ -73,5 +94,38 @@ export const useDeleteTaskByID = () => {
         mutationKey: ['delete-task'],
         mutationFn: deleteTaskByID,
         onSettled: () => currentQuery.invalidateQueries({ queryKey: ['tasks'] })
+    })
+}
+
+export const useDeleteAllTasks = () => {
+    const currentQuery = useQueryClient()
+
+    return useMutation({
+        mutationKey: ['delete-all-tasks'],
+        // mutationFn: deleteAllTasks,
+        mutationFn: async () => {
+            const prevTasks = currentQuery.getQueryData<Task[]>(['tasks'])
+            const taskArray = prevTasks?.map(task => task.id);
+            taskArray?.forEach(id => deleteTaskByID(id))
+            // console.log('prevTasks: ', prevTasks)
+        },
+        // onMutate: async () => {
+        //     const prevTasks = currentQuery.getQueryData<Task[]>(['tasks'])
+        //     const taskArray = prevTasks?.map(task => task.id);
+        //     taskArray?.forEach(id => deleteTaskByID(id))
+        //     // console.log('prevTasks: ', prevTasks)
+        // },
+        onSettled: () => currentQuery.invalidateQueries({ queryKey: ['tasks'] })
+    })
+}
+
+export const useToggleTaskAsCompleted = () => {
+    const currentQuery = useQueryClient()
+
+    return useMutation({
+        mutationKey: ['toggle-task'],
+        mutationFn: toggleTaskAsCompleted,
+        onSettled: () => currentQuery.invalidateQueries({ queryKey: ['tasks'] })
+
     })
 }

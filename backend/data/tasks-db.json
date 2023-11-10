@@ -1,23 +1,18 @@
 {
   "tasks": [
     {
-      "id": "d279319f-e28d-43f5-b3ae-97397794652d",
-      "title": "Milk",
+      "id": "cfa99085-0b28-4f91-9f7b-1fa978ddac9f",
+      "title": "Apple",
       "isCompleted": false
     },
     {
-      "id": "a56a6e65-8964-44c3-a3bf-93566084f039",
-      "title": "Fish",
+      "id": "e0ba33a7-7b30-435b-a47f-dea356872582",
+      "title": "Banana",
       "isCompleted": false
     },
     {
-      "id": "1eac23c7-4e5a-4e0f-af27-bb4a2eb62d4d",
+      "id": "11d42337-ec68-4bd7-90e5-b8aac49bea27",
       "title": "Cheese",
-      "isCompleted": false
-    },
-    {
-      "id": "d114a60c-349d-4443-9681-23e1f3190a5c",
-      "title": "Broccoli",
       "isCompleted": false
     }
   ]

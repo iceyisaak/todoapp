@@ -3,7 +3,7 @@ import { deleteTaskAtom, selectTaskToEditAtom, toggleTaskAsCompletedAtom } from 
 
 
 import { MdOutlineDelete, MdOutlineEdit } from 'react-icons/md'
-import { useAddTask, useDeleteTaskByID } from '../../../api/tasks-api'
+import { useAddTask, useDeleteTaskByID, useToggleTaskAsCompleted } from '../../../api/tasks-api'
 import { type Task } from '../../../types'
 import style from './task-item.module.scss'
 
@@ -17,14 +17,15 @@ const TaskItem = ({ data }: TaskItem) => {
 
 
     // const [, deleteTask] = useAtom(deleteTaskAtom)
-    const [, toggleTaskAsCompleted] = useAtom(toggleTaskAsCompletedAtom)
+    // const [, toggleTaskAsCompleted] = useAtom(toggleTaskAsCompletedAtom)
     const [, selectTaskToEdit] = useAtom(selectTaskToEditAtom)
 
-    const { isPending, variables } = useAddTask()
+    const { isPending } = useAddTask()
+    const { mutate: toggleTaskAsCompleted } = useToggleTaskAsCompleted()
     const { mutate: deleteTaskByID } = useDeleteTaskByID()
 
-    console.log('isPending: ', isPending)
-    console.log('variables: ', variables)
+    // console.log('isPending: ', isPending)
+    // console.log('variables: ', variables)
 
 
     const deleteTaskHandler = () => {

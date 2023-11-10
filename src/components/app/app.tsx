@@ -8,19 +8,26 @@ import TaskList from '../task-list/task-list'
 
 import { MdOutlineClose } from 'react-icons/md'
 import style from './app.module.scss'
+import { useDeleteAllTasks, useGetAllTasks } from '../../api/tasks-api'
 
 
 
 const App = () => {
 
-  const [tasks] = useAtom(tasksAtom)
-  const [, deleteAllTasks] = useAtom(deleteAllTasksAtom)
+  // const [tasks] = useAtom(tasksAtom)
+  // const [, deleteAllTasks] = useAtom(deleteAllTasksAtom)
+  const { data: tasks } = useGetAllTasks()
+  const { mutate: deleteAllTasks } = useDeleteAllTasks()
 
 
-  const deleteAllTasksHandler = () => {
+  const deleteAllTasksHandler = async () => {
     const deleteAllTasksConfirm = confirm('Delete All Tasks?')
     if (deleteAllTasksConfirm) {
-      deleteAllTasks()
+      try {
+        await deleteAllTasks()
+      } catch (err) {
+        console.log('Error when trying to delete All tasks.', err)
+      }
     }
   }
 
@@ -30,7 +37,7 @@ const App = () => {
     <div className={`${style['container']}`}>
       <main className={`${style['main']}`}>
         {
-          tasks.length > 0 &&
+          tasks && tasks?.length > 0 &&
           <MdOutlineClose
             title='Delete All Tasks'
             onClick={deleteAllTasksHandler}
