@@ -1,6 +1,6 @@
 import { useTodoContext } from "../../contexts/todo-context";
-import TaskForm from "../task-form/task-form";
-import TaskList from "../task-list/task-list";
+import TaskForm from "../task-form";
+import TaskList from "../task-list";
 
 import { MdOutlineClose } from "react-icons/md";
 

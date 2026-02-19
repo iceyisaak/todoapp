@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./components/app/app";
+import App from "./components/app";
 import { TodoContextProvider } from "./contexts/todo-context";
 
 import "./styles/global-style.scss";
