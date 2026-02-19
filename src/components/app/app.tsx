@@ -1,54 +1,46 @@
-import { useDeleteAllTasks, useGetAllTasks } from '../../api/tasks-api'
-import { AppHeader } from '../app-header/app-header'
-import TaskForm from '../task-form/task-form'
-import TaskList from '../task-list/task-list'
+import { useDeleteAllTasks, useGetAllTasks } from "../../api/tasks-api";
+import AppHeader from "../app-header";
+import TaskForm from "../task-form";
+import TaskList from "../task-list";
 
-import { MdOutlineClose } from 'react-icons/md'
-import style from './app.module.scss'
-
-
+import { MdOutlineClose } from "react-icons/md";
+import style from "./app.module.scss";
 
 const App = () => {
-
-  const { data: tasks } = useGetAllTasks()
-  const { mutate: deleteAllTasks } = useDeleteAllTasks()
+  const { data: tasks } = useGetAllTasks();
+  const { mutate: deleteAllTasks } = useDeleteAllTasks();
 
   const deleteAllTasksHandler = async () => {
-    const deleteAllTasksConfirm = confirm('Delete All Tasks?')
+    const deleteAllTasksConfirm = confirm("Delete All Tasks?");
     if (deleteAllTasksConfirm) {
       try {
-        deleteAllTasks()
+        deleteAllTasks();
       } catch (err) {
-        console.log('Error when trying to delete All tasks.', err)
+        console.log("Error when trying to delete All tasks.", err);
       }
     }
-  }
-
-
+  };
 
   return (
-    <div className={`${style['container']}`}>
-      <main className={`${style['main']}`}>
-        {
-          tasks && tasks?.length > 0 &&
+    <div className={`${style["container"]}`}>
+      <main className={`${style["main"]}`}>
+        {tasks && tasks?.length > 0 && (
           <MdOutlineClose
-            title='Delete All Tasks'
+            title="Delete All Tasks"
             onClick={deleteAllTasksHandler}
             className={`
-                ${'pointer'}
-                ${style['btn-delall']}
-                ${style['btn-delete-all']}
+                ${"pointer"}
+                ${style["btn-delall"]}
+                ${style["btn-delete-all"]}
               `}
           />
-        }
+        )}
         <AppHeader />
         <TaskForm />
         <TaskList />
       </main>
     </div>
+  );
+};
 
-
-  )
-}
-
-export default App
+export default App;

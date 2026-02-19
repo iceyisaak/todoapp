@@ -1,56 +1,57 @@
 # TodoApp
-###### ver: ReactTS + Tanstack Query + Jotai
+
+###### ver: ReactTS + Reducer
+
 ###### 20231110
 
 This app lets you:
+
 1. Create tasks
 2. Read tasks
 3. Update tasks
 4. Delete tasks
 
 Different versions avaialble with respective branch names:
+
 - master: Latest version
 - tanstack-query: Implementation of Tanstack Query (React Query) with JSON Server
 - jotai: Implementation of Jotai as the state manager
 - zustand: Implementation of Zustand as the state manager
 - context-api: original version using react context API
 
-
 ## Features
+
 - Simple form input
 - Simple list that display entered tasks
-- Data stored in `JSON Server`
+- Data stored in `localStorage()`
 - A button to delete all tasks
 - A button to edit task
 - A button to delete each task
 - A button to toggle task as completed
 
-
 ## How to run project
+
 - In the console: run command
   ```
-  npm run front-and-back
+  npm run dev
   ```
-
-
 
 ## Sources, Technologies, and Dependencies
 
 ### Sources
+
 [Favicon](https://www.reshot.com/free-svg-icons/item/check-list-3EU5R962XC/)
 
-
 ### Technologies
+
 - ReactJS
 - SCSS
 - TypeScript
-- Jotai: Frontend State Management
-- Tanstack Query: Backend Data Interaction
-- JSON Server
+- useReducer
 - React Icons
 
-
 ### Dependencies
+
 ```json
    "dependencies": {
     "@tanstack/query-core": "^5.90.20",
@@ -65,6 +66,7 @@ Different versions avaialble with respective branch names:
 ```
 
 ### DevDependencies
+
 ```json
   "devDependencies": {
     "@types/react": "^19.2.14",
@@ -83,4 +85,4 @@ Different versions avaialble with respective branch names:
   }
 ```
 
-## 
+##
