@@ -1,22 +1,19 @@
-import { useGetAllTasks, useAddTask } from "../../api/tasks-api";
+import { useTodoContext } from "../../reducers/store/todoStore";
 import TaskItem from "./task-item";
 
 import style from "./task-list.module.scss";
 
 const TaskList = () => {
-  const { data: tasks, isLoading } = useGetAllTasks();
-  const { isPending, isError } = useAddTask();
+  const { tasks, isLoading } = useTodoContext();
 
   return (
     <ul className={`${style["TaskList"]}`}>
-      {!isLoading && tasks && tasks?.length < 1 ? (
+      {isLoading ? (
+        "Loading..."
+      ) : tasks.length < 1 ? (
         <p className={`${style["no-task"]}`}>+++ Task List is Empty +++</p>
-      ) : isPending ? (
-        "Adding new Task"
-      ) : isError ? (
-        "Something went wrong."
       ) : (
-        tasks?.map((task) => <TaskItem key={task.id} data={task} />)
+        tasks.map((task) => <TaskItem key={task.taskId} data={task} />)
       )}
     </ul>
   );
