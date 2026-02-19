@@ -1,6 +1,6 @@
 import {
-  ChangeEvent,
-  SyntheticEvent,
+  ChangeEventHandler,
+  SubmitEventHandler,
   useEffect,
   useRef,
   useState,
@@ -16,11 +16,11 @@ const TaskForm = () => {
 
   const { addTask, editTask, isEditing } = useTodoContext();
 
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChangeHandler: ChangeEventHandler<HTMLInputElement> = (e) => {
     setText(e.target.value);
   };
 
-  const onSubmitHandler = (e: SyntheticEvent<HTMLFormElement>) => {
+  const onSubmitHandler: SubmitEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
 
     if (isEditing !== null) {
