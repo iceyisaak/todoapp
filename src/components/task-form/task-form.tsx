@@ -1,4 +1,10 @@
-import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
+import {
+  ChangeEvent,
+  SyntheticEvent,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
 import { useTodoContext } from "../../contexts/todo-context";
 
@@ -14,7 +20,7 @@ const TaskForm = () => {
     setText(e.target.value);
   };
 
-  const onSubmitHandler = (e: FormEvent) => {
+  const onSubmitHandler = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (isEditing !== null) {
