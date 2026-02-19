@@ -52,34 +52,34 @@ Different versions avaialble with respective branch names:
 
 ### Dependencies
 ```json
- "dependencies": {
-    "@tanstack/query-core": "^5.7.2",
-    "@tanstack/react-query": "^5.7.2",
-    "axios": "^1.6.0",
-    "jotai": "^2.5.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.10.1",
-    "uuid": "^9.0.0"
+   "dependencies": {
+    "@tanstack/query-core": "^5.90.20",
+    "@tanstack/react-query": "^5.90.21",
+    "axios": "^1.13.5",
+    "jotai": "^2.18.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-icons": "^5.5.0",
+    "uuid": "^13.0.0"
   },
 ```
 
 ### DevDependencies
 ```json
   "devDependencies": {
-    "@types/react": "^18.2.15",
-    "@types/react-dom": "^18.2.7",
-    "@types/uuid": "^9.0.2",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "@vitejs/plugin-react": "^4.0.3",
-    "concurrently": "^8.2.2",
-    "eslint": "^8.45.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.3",
-    "sass": "^1.65.1",
-    "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@types/uuid": "^11.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.56.0",
+    "@typescript-eslint/parser": "^8.56.0",
+    "@vitejs/plugin-react": "^5.1.4",
+    "concurrently": "^9.2.1",
+    "eslint": "^10.0.0",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.0",
+    "sass": "^1.97.3",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1"
   }
 ```
 
