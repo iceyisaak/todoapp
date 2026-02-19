@@ -1,4 +1,4 @@
-import { useTodoContext } from "../../reducers/store/todoStore";
+import { useTodoContext } from "../../reducers/stores/todoStore";
 import TaskItem from "./task-item";
 
 import style from "./task-list.module.scss";

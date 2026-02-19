@@ -7,7 +7,7 @@ import App from "./components/app";
 import "./styles/global-style.scss";
 
 // const queryClient = new QueryClient();
-import { TodoContextProvider } from "./reducers/store/todoStore";
+import { TodoContextProvider } from "./reducers/stores/todoStore";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

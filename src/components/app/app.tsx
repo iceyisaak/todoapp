@@ -3,7 +3,7 @@ import TaskForm from "../task-form";
 import TaskList from "../task-list";
 
 import { MdOutlineClose } from "react-icons/md";
-import { useTodoContext } from "../../reducers/store/todoStore";
+import { useTodoContext } from "../../reducers/stores/todoStore";
 import style from "./app.module.scss";
 
 const App = () => {

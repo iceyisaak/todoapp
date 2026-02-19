@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 
 import { MdOutlineAddCircleOutline } from "react-icons/md";
-import { useTodoContext } from "../../reducers/store/todoStore";
+import { useTodoContext } from "../../reducers/stores/todoStore";
 import style from "./task-form.module.scss";
 
 const TaskForm = () => {

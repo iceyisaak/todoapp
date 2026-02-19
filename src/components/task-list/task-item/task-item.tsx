@@ -1,4 +1,4 @@
-import { useTodoContext } from "../../../reducers/store/todoStore";
+import { useTodoContext } from "../../../reducers/stores/todoStore";
 import { type Task } from "../../../types/todo";
 
 import style from "./task-item.module.scss";

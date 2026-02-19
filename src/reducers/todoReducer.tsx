@@ -1,26 +1,11 @@
-import { type Task } from "../types/todo";
-
-export type TodoState = {
-  tasks: Task[];
-  isLoading: boolean;
-  isEditing: Task | null;
-};
+import { type TodoState } from "../types/todo";
+import { type TodoAction } from "./actions/todoActions";
 
 export const initialState: TodoState = {
   tasks: [],
   isLoading: false,
   isEditing: null,
 };
-
-export type TodoAction =
-  | { type: "SET_LOADING"; payload: boolean }
-  | { type: "FETCH_TASKS"; payload: Task[] }
-  | { type: "ADD_TASK"; payload: Task }
-  | { type: "DELETE_TASK"; payload: string }
-  | { type: "DELETE_ALL_TASKS" }
-  | { type: "SELECT_TASK_TO_EDIT"; payload: Task }
-  | { type: "EDIT_TASK"; payload: { taskId: string; taskTitle: string } }
-  | { type: "TOGGLE_TASK_COMPLETED"; payload: string };
 
 export const todoReducer = (
   state: TodoState,
