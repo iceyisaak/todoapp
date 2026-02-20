@@ -1,71 +1,52 @@
-import { useAtom } from 'jotai'
-import { selectTaskToEditAtom } from '../../../features/todo-feature/todo-store'
+import { MdOutlineDelete, MdOutlineEdit } from "react-icons/md";
+import { useTodoContext } from "../../../contexts/todo-context";
 
-
-import { MdOutlineDelete, MdOutlineEdit } from 'react-icons/md'
-import { useAddTask, useDeleteTaskByID, useToggleTaskAsCompleted } from '../../../api/tasks-api'
-import { type Task } from '../../../types'
-import style from './task-item.module.scss'
-
+import { type Task } from "../../../types";
+import style from "./task-item.module.scss";
 
 type TaskItem = {
-    data: Task
-}
-
+  data: Task;
+};
 
 const TaskItem = ({ data }: TaskItem) => {
+  const { deleteTask, selectTaskToEdit, toggleTaskAsCompleted } =
+    useTodoContext();
 
+  const onDeleteTask = () => {
+    deleteTask(data.taskId);
+  };
 
-    const [, selectTaskToEdit] = useAtom(selectTaskToEditAtom)
+  const onSelectEditTask = () => {
+    selectTaskToEdit(data);
+  };
 
-    const { isPending } = useAddTask()
-    const { mutate: toggleTaskAsCompleted } = useToggleTaskAsCompleted()
-    const { mutate: deleteTaskByID } = useDeleteTaskByID()
+  const onToggleTaskAsComplete = () => {
+    toggleTaskAsCompleted(data.taskId);
+  };
 
+  return (
+    <li className={`${style["TaskItem"]}`}>
+      <input
+        type="checkbox"
+        onChange={onToggleTaskAsComplete}
+        checked={data.isCompleted}
+        className={`${style["checkbox"]}`}
+      />
+      <span
+        className={`${style["task-name"]} ${data.isCompleted ? `${style["isCompleted"]}` : ``}`}
+      >
+        {data.taskTitle}
+      </span>
+      <MdOutlineEdit
+        onClick={onSelectEditTask}
+        className={`${"pointer"} ${style["item-btn"]}`}
+      />
+      <MdOutlineDelete
+        onClick={onDeleteTask}
+        className={`${"pointer"} ${style["item-btn"]}`}
+      />
+    </li>
+  );
+};
 
-
-    const deleteTaskHandler = () => {
-        const deleteTaskConfirm = confirm('Delete this task?')
-        if (deleteTaskConfirm) {
-            deleteTaskByID(data.id)
-        }
-    }
-
-    const selectEditTaskHandler = () => {
-        selectTaskToEdit(data)
-    }
-
-    const toggleTaskAsCompleteHandler = () => {
-        toggleTaskAsCompleted(data)
-    }
-
-    return (
-
-        <li className={`${style['TaskItem']}`} key={data.id}>
-            <input
-                type="checkbox"
-                onChange={toggleTaskAsCompleteHandler}
-                checked={data.isCompleted ? true : false}
-                className={`${style['checkbox']}`}
-            />
-            <span className={`
-                ${style['task-name']}
-                ${data.isCompleted ? `${style['isCompleted']}` : ``}
-                ${isPending ? `${style['isPending']}` : ``}
-                `}>
-                {data.title}
-            </span>
-            <MdOutlineEdit
-                onClick={selectEditTaskHandler}
-                className={`${'pointer'} ${style['item-btn']}`}
-            />
-            <MdOutlineDelete
-                onClick={deleteTaskHandler}
-                className={`${'pointer'} ${style['item-btn']}`}
-            />
-        </li>
-    )
-}
-
-
-export default TaskItem
+export default TaskItem;

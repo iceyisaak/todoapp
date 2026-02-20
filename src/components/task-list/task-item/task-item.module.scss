@@ -1,34 +1,33 @@
-@use '../../../styles/abstract/mixins' as *;
-
+@use "../../../styles/abstract/mixins" as *;
 
 .TaskItem {
-    display: flex;
-    align-items: center;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    border-bottom: 0.25rem dotted #ececec;
+  display: flex;
+  align-items: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-bottom: 0.25rem dotted #ececec;
 
-    .task-name {
-        width: 100vw;
-        height: 3rem;
-        align-self: center;
-        margin-top: 1rem;
+  .task-name {
+    width: 100vw;
+    height: 3rem;
+    align-self: center;
+    margin-top: 1rem;
 
-        @include respond(md) {
-            width: 100%;
-        }
+    @include respond(md) {
+      width: 100%;
     }
+  }
 
-    .item-btn {
-        margin-right: 0.5rem;
-    }
+  .item-btn {
+    margin-right: 0.5rem;
+  }
 
-    .isCompleted {
-        text-decoration: line-through;
-        opacity: 0.25;
-    }
+  .isCompleted {
+    text-decoration: line-through;
+    opacity: 0.25;
+  }
 
-    .checkbox {
-        margin-right: 1rem;
-    }
+  .checkbox {
+    margin-right: 1rem;
+  }
 }

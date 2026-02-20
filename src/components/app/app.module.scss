@@ -1,33 +1,59 @@
+<<<<<<< HEAD
 @use '../../styles/abstract/mixins' as *;
 
+=======
+@use "../../styles/abstract/mixins" as *;
+
+.h1 {
+  font-size: 3rem;
+
+  @include respond(md) {
+    font-size: 7rem;
+  }
+}
+
+.h4 {
+  font-size: 1rem;
+
+  @include respond(md) {
+    font-size: 2.5rem;
+  }
+}
+
+.header {
+  margin-bottom: 1.5rem;
+  flex: 1 0;
+  text-align: center;
+}
+>>>>>>> react-contextapi
 
 .main {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 .container {
-    margin-top: 8rem;
+  margin-top: 8rem;
 
-    @include respond(md) {
-        display: flex;
-        flex-flow: column;
-        justify-content: center;
-        align-items: center;
-    }
+  @include respond(md) {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .btn-delall {
-    font-size: 3rem;
+  font-size: 3rem;
 
-    @include respond(md) {
-        align-self: start;
-    }
+  @include respond(md) {
+    align-self: start;
+  }
 }
 
 .btn-container {
-    background: yellow;
+  background: yellow;
 }
 
 .btn-delete-all {
-    position: absolute;
+  position: absolute;
 }

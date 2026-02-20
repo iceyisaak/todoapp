@@ -1,48 +1,48 @@
-@use '../../styles/abstract/mixins' as *;
+@use "../../styles/abstract/mixins" as *;
 
 .form {
-    width: 100vw;
-    height: 4rem;
-    display: flex;
-    margin-bottom: 3rem;
+  width: 100vw;
+  height: 4rem;
+  display: flex;
+  margin-bottom: 3rem;
 
-    @include respond(md) {
-        width: 76rem;
-        justify-content: center;
-    }
+  @include respond(md) {
+    width: 76rem;
+    justify-content: center;
+  }
 }
 
 .input {
-    width: 85vw;
-    height: 4rem;
-    flex: 1 0;
-    border: 0;
-    padding: 0.5rem;
-    outline: none;
-    background: #e6e6e6;
+  width: 85vw;
+  height: 4rem;
+  flex: 1 0;
+  border: 0;
+  padding: 0.5rem;
+  outline: none;
+  background: #e6e6e6;
 
-    @include respond(md) {
-        height: 5rem;
-        padding: 1rem;
-    }
+  @include respond(md) {
+    height: 5rem;
+    padding: 1rem;
+  }
 }
 
 .btn {
-    background: #f7a902;
-    border: none;
-    width: 4rem;
-    height: 4rem;
-    outline: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background: #f7a902;
+  border: none;
+  width: 4rem;
+  height: 4rem;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    @include respond(md) {
-        width: 5rem;
-        height: 5rem;
-    }
+  @include respond(md) {
+    width: 5rem;
+    height: 5rem;
+  }
 
-    &-text {
-        font-size: 4rem;
-    }
+  &-text {
+    font-size: 4rem;
+  }
 }
