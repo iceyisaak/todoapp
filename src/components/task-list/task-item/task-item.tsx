@@ -2,10 +2,10 @@ import { MdOutlineDelete, MdOutlineEdit } from "react-icons/md";
 
 import { useAppDispatch } from "../../../reducers/store";
 import {
-  deleteTask,
-  selectTaskToEdit,
-  toggleTaskAsCompleted,
-} from "../../../reducers/todoSlice";
+  useDeleteTaskMutation,
+  useToggleTaskMutation,
+} from "../../../reducers/todoApi";
+import { selectTaskToEdit } from "../../../reducers/todoSlice";
 import { type Task } from "../../../types/todo";
 import style from "./task-item.module.scss";
 
@@ -13,10 +13,12 @@ type TaskItemProps = { data: Task };
 
 const TaskItem = ({ data }: TaskItemProps) => {
   const dispatch = useAppDispatch();
+  const [deleteTask] = useDeleteTaskMutation();
+  const [toggleTask] = useToggleTaskMutation();
 
   const handleDelete = () => {
     if (window.confirm("Delete this task?")) {
-      dispatch(deleteTask(data.taskId));
+      deleteTask(data.taskId);
     }
   };
 
@@ -24,7 +26,9 @@ const TaskItem = ({ data }: TaskItemProps) => {
     <li className={style["TaskItem"]}>
       <input
         type="checkbox"
-        onChange={() => dispatch(toggleTaskAsCompleted(data.taskId))}
+        onChange={() =>
+          toggleTask({ taskId: data.taskId, isCompleted: data.isCompleted })
+        }
         checked={data.isCompleted}
         className={style["checkbox"]}
       />

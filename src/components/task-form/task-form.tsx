@@ -2,22 +2,30 @@ import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
 
 import { useAppDispatch, useAppSelector } from "../../reducers/store";
-import { addTask, editTask } from "../../reducers/todoSlice";
+import {
+  useAddTaskMutation,
+  useEditTaskMutation,
+} from "../../reducers/todoApi";
+import { clearEditing } from "../../reducers/todoSlice";
 import style from "./task-form.module.scss";
 
 const TaskForm = () => {
   const dispatch = useAppDispatch();
   const isEditing = useAppSelector((state) => state.todo.isEditing);
 
+  const [addTask, { isLoading: isAdding }] = useAddTaskMutation();
+  const [editTask, { isLoading: isUpdating }] = useEditTaskMutation();
+
   const inputRef = useRef<HTMLInputElement>(null!);
   const [text, setText] = useState("");
 
-  const onSubmitHandler = (e: FormEvent) => {
+  const onSubmitHandler = async (e: FormEvent) => {
     e.preventDefault();
     if (isEditing === null) {
-      dispatch(addTask(text));
+      await addTask(text);
     } else {
-      dispatch(editTask({ taskId: isEditing.taskId, taskTitle: text }));
+      await editTask({ taskId: isEditing.taskId, taskTitle: text });
+      dispatch(clearEditing());
     }
     setText("");
   };
@@ -31,6 +39,8 @@ const TaskForm = () => {
     }
   }, [isEditing]);
 
+  const isBusy = isAdding || isUpdating;
+
   return (
     <form onSubmit={onSubmitHandler} className={style["form"]}>
       <input
@@ -40,10 +50,11 @@ const TaskForm = () => {
         placeholder="e.g. Shopping"
         value={text}
         required
+        disabled={isBusy}
         className={style["input"]}
         maxLength={25}
       />
-      <button className={style["btn"]}>
+      <button className={style["btn"]} disabled={isBusy}>
         <MdOutlineAddCircleOutline className={`${style["btn-text"]} pointer`} />
       </button>
     </form>

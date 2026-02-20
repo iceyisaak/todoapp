@@ -1,15 +1,16 @@
-import { useAppSelector } from "../../reducers/store";
+import { useGetTasksQuery } from "../../reducers/todoApi";
 import TaskItem from "./task-item";
 import style from "./task-list.module.scss";
 
 const TaskList = () => {
-  const tasks = useAppSelector((state) => state.todo.tasks);
-  const isLoading = useAppSelector((state) => state.todo.isLoading);
+  const { data: tasks = [], isLoading, isError } = useGetTasksQuery();
 
   return (
     <ul className={style["TaskList"]}>
       {isLoading ? (
         "Loading..."
+      ) : isError ? (
+        <p className={style["no-task"]}>⚠ Failed to load tasks.</p>
       ) : tasks.length < 1 ? (
         <p className={style["no-task"]}>+++ Task List is Empty +++</p>
       ) : (

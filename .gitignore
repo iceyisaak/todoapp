@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
+backend/pb_data/
+.env
 
 # Editor directories and files
 .vscode/*
