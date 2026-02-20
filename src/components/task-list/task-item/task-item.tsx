@@ -1,52 +1,47 @@
-import { useTodoContext } from "../../../reducers/stores/todoStore";
-import { type Task } from "../../../types/todo";
-
-import style from "./task-item.module.scss";
 import { MdOutlineDelete, MdOutlineEdit } from "react-icons/md";
 
-type TaskItem = {
-  data: Task;
-};
+import { useAppDispatch } from "../../../reducers/store";
+import {
+  deleteTask,
+  selectTaskToEdit,
+  toggleTaskAsCompleted,
+} from "../../../reducers/todoSlice";
+import { type Task } from "../../../types/todo";
+import style from "./task-item.module.scss";
 
-const TaskItem = ({ data }: TaskItem) => {
-  const { deleteTask, selectTaskToEdit, toggleTaskAsCompleted } =
-    useTodoContext();
+type TaskItemProps = { data: Task };
 
-  const deleteTaskHandler = () => {
-    deleteTask(data.taskId);
-  };
+const TaskItem = ({ data }: TaskItemProps) => {
+  const dispatch = useAppDispatch();
 
-  const selectEditTaskHandler = () => {
-    selectTaskToEdit(data);
-  };
-
-  const toggleTaskAsCompleteHandler = () => {
-    toggleTaskAsCompleted(data.taskId);
+  const handleDelete = () => {
+    if (window.confirm("Delete this task?")) {
+      dispatch(deleteTask(data.taskId));
+    }
   };
 
   return (
-    <li className={`${style["TaskItem"]}`} key={data.taskId}>
+    <li className={style["TaskItem"]}>
       <input
         type="checkbox"
-        onChange={toggleTaskAsCompleteHandler}
-        checked={data.isCompleted ? true : false}
-        className={`${style["checkbox"]}`}
+        onChange={() => dispatch(toggleTaskAsCompleted(data.taskId))}
+        checked={data.isCompleted}
+        className={style["checkbox"]}
       />
       <span
-        className={`
-          ${style["task-name"]}
-          ${data.isCompleted ? `${style["isCompleted"]}` : ``}
-        `}
+        className={`${style["task-name"]} ${
+          data.isCompleted ? style["isCompleted"] : ""
+        }`}
       >
         {data.taskTitle}
       </span>
       <MdOutlineEdit
-        onClick={selectEditTaskHandler}
-        className={`${"pointer"} ${style["item-btn"]}`}
+        onClick={() => dispatch(selectTaskToEdit(data))}
+        className={`pointer ${style["item-btn"]}`}
       />
       <MdOutlineDelete
-        onClick={deleteTaskHandler}
-        className={`${"pointer"} ${style["item-btn"]}`}
+        onClick={handleDelete}
+        className={`pointer ${style["item-btn"]}`}
       />
     </li>
   );

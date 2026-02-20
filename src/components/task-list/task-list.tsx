@@ -1,17 +1,17 @@
-import { useTodoContext } from "../../reducers/stores/todoStore";
+import { useAppSelector } from "../../reducers/store";
 import TaskItem from "./task-item";
-
 import style from "./task-list.module.scss";
 
 const TaskList = () => {
-  const { tasks, isLoading } = useTodoContext();
+  const tasks = useAppSelector((state) => state.todo.tasks);
+  const isLoading = useAppSelector((state) => state.todo.isLoading);
 
   return (
-    <ul className={`${style["TaskList"]}`}>
+    <ul className={style["TaskList"]}>
       {isLoading ? (
         "Loading..."
       ) : tasks.length < 1 ? (
-        <p className={`${style["no-task"]}`}>+++ Task List is Empty +++</p>
+        <p className={style["no-task"]}>+++ Task List is Empty +++</p>
       ) : (
         tasks.map((task) => <TaskItem key={task.taskId} data={task} />)
       )}

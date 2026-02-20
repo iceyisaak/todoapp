@@ -1,37 +1,24 @@
-import {
-  ChangeEventHandler,
-  SubmitEventHandler,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
-import { useTodoContext } from "../../reducers/stores/todoStore";
+
+import { useAppDispatch, useAppSelector } from "../../reducers/store";
+import { addTask, editTask } from "../../reducers/todoSlice";
 import style from "./task-form.module.scss";
 
 const TaskForm = () => {
-  const { addTask, editTask, isEditing } = useTodoContext();
+  const dispatch = useAppDispatch();
+  const isEditing = useAppSelector((state) => state.todo.isEditing);
 
   const inputRef = useRef<HTMLInputElement>(null!);
   const [text, setText] = useState("");
 
-  const onChangeHandler: ChangeEventHandler<
-    HTMLInputElement,
-    HTMLInputElement
-  > = (e) => {
-    setText(e.target.value);
-  };
-
-  const onSubmitHandler: SubmitEventHandler<HTMLFormElement> = (e) => {
+  const onSubmitHandler = (e: FormEvent) => {
     e.preventDefault();
-
     if (isEditing === null) {
-      addTask(text);
+      dispatch(addTask(text));
     } else {
-      editTask(isEditing.taskId, text);
+      dispatch(editTask({ taskId: isEditing.taskId, taskTitle: text }));
     }
-
     setText("");
   };
 
@@ -45,21 +32,19 @@ const TaskForm = () => {
   }, [isEditing]);
 
   return (
-    <form onSubmit={onSubmitHandler} className={`${style["form"]}`}>
+    <form onSubmit={onSubmitHandler} className={style["form"]}>
       <input
+        ref={inputRef}
         type="text"
-        onChange={onChangeHandler}
+        onChange={(e: ChangeEvent<HTMLInputElement>) => setText(e.target.value)}
         placeholder="e.g. Shopping"
         value={text}
         required
-        className={`${style["input"]}`}
+        className={style["input"]}
         maxLength={25}
-        ref={inputRef}
       />
-      <button className={`${style["btn"]}`}>
-        <MdOutlineAddCircleOutline
-          className={`${style["btn-text"]} ${"pointer"}`}
-        />
+      <button className={style["btn"]}>
+        <MdOutlineAddCircleOutline className={`${style["btn-text"]} pointer`} />
       </button>
     </form>
   );
