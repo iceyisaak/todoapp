@@ -1,6 +1,6 @@
 # TodoApp
 
-###### ver: ReactTS + Reducer
+###### ver: ReactTS + Reducer + ContextAPI
 
 ###### 20231110
 
