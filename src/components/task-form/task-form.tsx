@@ -5,7 +5,7 @@ import { useTodoContext } from "../../reducers/stores/todoStore";
 import style from "./task-form.module.scss";
 
 const TaskForm = () => {
-  const { addTask, editTask, isEditing, selectTaskToEdit } = useTodoContext();
+  const { addTask, editTask, isEditing } = useTodoContext();
 
   const inputRef = useRef<HTMLInputElement>(null!);
   const [text, setText] = useState("");
