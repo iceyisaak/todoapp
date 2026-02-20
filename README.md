@@ -45,7 +45,8 @@ Different versions avaialble with respective branch names:
 - ReactJS
 - SCSS
 - TypeScript
-- useReducer
+- RTK Query
+- PocketBase
 - React Icons
 
 ### Dependencies
