@@ -1,4 +1,10 @@
-import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
+import {
+  ChangeEvent,
+  SubmitEventHandler,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
 
 import { useAppDispatch, useAppSelector } from "../../reducers/store";
@@ -19,7 +25,7 @@ const TaskForm = () => {
   const inputRef = useRef<HTMLInputElement>(null!);
   const [text, setText] = useState("");
 
-  const onSubmitHandler = async (e: FormEvent) => {
+  const onSubmitHandler: SubmitEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     if (isEditing === null) {
       await addTask(text);

@@ -4,7 +4,7 @@ import AppHeader from "../app-header";
 import TaskForm from "../task-form";
 import TaskList from "../task-list";
 
-import { useAppSelector } from "../../reducers/store";
+// import { useAppSelector } from "../../reducers/store";
 import {
   useDeleteAllTasksMutation,
   useGetTasksQuery,
@@ -14,7 +14,7 @@ import style from "./app.module.scss";
 const App = () => {
   const { data: tasks = [] } = useGetTasksQuery();
   const [deleteAllTasks] = useDeleteAllTasksMutation();
-  const isEditing = useAppSelector((state) => state.todo.isEditing);
+  // const isEditing = useAppSelector((state) => state.todo.isEditing);
 
   const handleDeleteAll = () => {
     if (window.confirm("Delete All Tasks?")) {
