@@ -1,8 +1,6 @@
 # TodoApp
 
-###### ver: ReactTS + Reducer + ContextAPI
-
-###### 20231110
+###### ver: ReactTS + RTK
 
 This app lets you:
 
