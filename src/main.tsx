@@ -7,10 +7,8 @@ import "./styles/global-style.scss";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <Provider>
-        <App />
-      </Provider>
-    </QueryClientProvider>
+    <TodoContextProvider>
+      <App />
+    </TodoContextProvider>
   </React.StrictMode>,
 );

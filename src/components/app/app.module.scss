@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-@use '../../styles/abstract/mixins' as *;
-
-=======
 @use "../../styles/abstract/mixins" as *;
 
 .h1 {
@@ -25,7 +21,6 @@
   flex: 1 0;
   text-align: center;
 }
->>>>>>> react-contextapi
 
 .main {
   font-size: 2rem;
