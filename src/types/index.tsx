@@ -1,2 +1,1 @@
-export type { Task, TaskInitialState } from './todo';
-
+export type { Task, TaskStore } from "./todo";
