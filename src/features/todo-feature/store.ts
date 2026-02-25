@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist, subscribeWithSelector } from "zustand/middleware";
 
-import { Task, TaskStore } from "../../types";
+import { Task, TaskStore } from "../../types/";
 
 const taskStore: TaskStore = {
   tasks: [],
