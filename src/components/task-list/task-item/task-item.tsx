@@ -5,7 +5,7 @@ import {
   toggleTaskAsCompleted,
 } from "../../../features/todo-feature/store";
 
-import { type Task } from "../../../types";
+import { Task } from "../../../types";
 import style from "./task-item.module.scss";
 
 type TaskItem = {
@@ -29,11 +29,11 @@ const TaskItem = ({ data }: TaskItem) => {
   };
 
   return (
-    <li className={`${style["TaskItem"]}`} key={data.taskId}>
+    <li className={`${style["TaskItem"]}`}>
       <input
         type="checkbox"
         onChange={toggleTaskAsCompleteHandler}
-        checked={data.isCompleted ? true : false}
+        checked={data.isCompleted}
         className={`${style["checkbox"]}`}
       />
       <span

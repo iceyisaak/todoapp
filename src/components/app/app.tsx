@@ -10,7 +10,7 @@ import { MdOutlineClose } from "react-icons/md";
 import style from "./app.module.scss";
 
 const App = () => {
-  const tasks = useTaskStore((state) => state.tasks);
+  const { tasks } = useTaskStore();
 
   const deleteAllTasksHandler = () => {
     const deleteAllTasksConfirm = confirm("Delete All Tasks?");
@@ -20,26 +20,24 @@ const App = () => {
   };
 
   return (
-    <>
-      <div className={`${style["container"]}`}>
-        <main className={`${style["main"]}`}>
-          {tasks.length > 0 && (
-            <MdOutlineClose
-              title="Delete All Tasks"
-              onClick={deleteAllTasksHandler}
-              className={`
+    <div className={`${style["container"]}`}>
+      <main className={`${style["main"]}`}>
+        {tasks.length > 0 && (
+          <MdOutlineClose
+            title="Delete All Tasks"
+            onClick={deleteAllTasksHandler}
+            className={`
                 ${"pointer"}
                 ${style["btn-delall"]}
                 ${style["btn-delete-all"]}
               `}
-            />
-          )}
-          <AppHeader />
-          <TaskForm />
-          <TaskList />
-        </main>
-      </div>
-    </>
+          />
+        )}
+        <AppHeader />
+        <TaskForm />
+        <TaskList />
+      </main>
+    </div>
   );
 };
 
