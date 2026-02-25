@@ -1,7 +1,11 @@
 import { MdOutlineDelete, MdOutlineEdit } from "react-icons/md";
-import { useTodoContext } from "../../../contexts/todo-context";
+import {
+  deleteTask,
+  selectTaskToEdit,
+  toggleTaskAsCompleted,
+} from "../../../features/todo-feature/store";
 
-import { type Task } from "../../../types";
+import { Task } from "../../../types";
 import style from "./task-item.module.scss";
 
 type TaskItem = {
@@ -9,18 +13,18 @@ type TaskItem = {
 };
 
 const TaskItem = ({ data }: TaskItem) => {
-  const { deleteTask, selectTaskToEdit, toggleTaskAsCompleted } =
-    useTodoContext();
-
-  const onDeleteTask = () => {
-    deleteTask(data.taskId);
+  const deleteTaskHandler = () => {
+    const deleteTaskConfirm = confirm("Delete this task?");
+    if (deleteTaskConfirm) {
+      deleteTask(data.taskId);
+    }
   };
 
-  const onSelectEditTask = () => {
+  const selectEditTaskHandler = () => {
     selectTaskToEdit(data);
   };
 
-  const onToggleTaskAsComplete = () => {
+  const toggleTaskAsCompleteHandler = () => {
     toggleTaskAsCompleted(data.taskId);
   };
 
@@ -28,7 +32,7 @@ const TaskItem = ({ data }: TaskItem) => {
     <li className={`${style["TaskItem"]}`}>
       <input
         type="checkbox"
-        onChange={onToggleTaskAsComplete}
+        onChange={toggleTaskAsCompleteHandler}
         checked={data.isCompleted}
         className={`${style["checkbox"]}`}
       />
@@ -38,11 +42,11 @@ const TaskItem = ({ data }: TaskItem) => {
         {data.taskTitle}
       </span>
       <MdOutlineEdit
-        onClick={onSelectEditTask}
+        onClick={selectEditTaskHandler}
         className={`${"pointer"} ${style["item-btn"]}`}
       />
       <MdOutlineDelete
-        onClick={onDeleteTask}
+        onClick={deleteTaskHandler}
         className={`${"pointer"} ${style["item-btn"]}`}
       />
     </li>

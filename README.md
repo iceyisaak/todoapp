@@ -1,8 +1,12 @@
 # TodoApp
 
+<<<<<<< HEAD
 ###### ver: React Context API
 
 ###### 20231018
+=======
+###### ver: React Zustand
+>>>>>>> zustand
 
 This app lets you:
 
@@ -11,6 +15,17 @@ This app lets you:
 3. Update tasks
 4. Delete tasks
 
+<<<<<<< HEAD
+=======
+Different versions avaialble with respective branch names:
+
+- master: Latest version
+- react-query: Implementation of React Query with JSON Server
+- jotai: Implementation of Jotai as the state manager
+- zustand: Implementation of Zustand as the state manager
+- context-api: original version using react context API
+
+>>>>>>> zustand
 ## Features
 
 - Simple form input
@@ -36,6 +51,7 @@ Thumbnail
 https://www.reshot.com/free-svg-icons/item/check-list-3EU5R962XC/
 
 ### Technologies
+<<<<<<< HEAD
 
 - ReactJS
 - SCSS
@@ -45,6 +61,15 @@ https://www.reshot.com/free-svg-icons/item/check-list-3EU5R962XC/
 - JSON Server
 - React Icons
 
+=======
+
+- ReactJS
+- Zustand
+- TypeScript
+- SCSS
+- ReactIcons
+
+>>>>>>> zustand
 ### Dependencies
 
 ```json

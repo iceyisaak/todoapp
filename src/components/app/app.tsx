@@ -1,13 +1,23 @@
-import { useTodoContext } from "../../contexts/todo-context";
+import {
+  deleteAllTasks,
+  useTaskStore,
+} from "../../features/todo-feature/store";
 import TaskForm from "../task-form";
 import TaskList from "../task-list";
+import AppHeader from "../app-header";
 
 import { MdOutlineClose } from "react-icons/md";
-
 import style from "./app.module.scss";
 
 const App = () => {
-  const { deleteAllTasks, tasks } = useTodoContext();
+  const { tasks } = useTaskStore();
+
+  const deleteAllTasksHandler = () => {
+    const deleteAllTasksConfirm = confirm("Delete All Tasks?");
+    if (deleteAllTasksConfirm) {
+      deleteAllTasks();
+    }
+  };
 
   return (
     <div className={`${style["container"]}`}>
@@ -15,7 +25,7 @@ const App = () => {
         {tasks.length > 0 && (
           <MdOutlineClose
             title="Delete All Tasks"
-            onClick={deleteAllTasks}
+            onClick={deleteAllTasksHandler}
             className={`
                 ${"pointer"}
                 ${style["btn-delall"]}
@@ -23,10 +33,7 @@ const App = () => {
               `}
           />
         )}
-        <header className={`${style["header"]}`}>
-          <h1 className={`${style["h1"]}`}>TodoApp</h1>
-          <h4 className={`${style["h4"]}`}>React Context API</h4>
-        </header>
+        <AppHeader />
         <TaskForm />
         <TaskList />
       </main>
