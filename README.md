@@ -1,8 +1,6 @@
 # TodoApp
 
-###### ver: React Zustand
-
-###### 20231031
+###### ver: React Zustand + Tanstack Query
 
 This app lets you:
 
