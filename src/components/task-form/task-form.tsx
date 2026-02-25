@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
-import { v4 as uuidV4 } from "uuid";
+import { uuidv7 } from "uuidv7";
 import {
   addTask,
   editTask,
@@ -22,7 +22,7 @@ const TaskForm = () => {
   const onSubmitHandler = (e: FormEvent) => {
     e.preventDefault();
     if (isEditing === null) {
-      addTask({ taskId: uuidV4(), taskTitle: text, isCompleted: false });
+      addTask({ taskId: uuidv7(), taskTitle: text, isCompleted: false });
     } else {
       editTask(isEditing.taskId, text);
       setIsEditingDone();
