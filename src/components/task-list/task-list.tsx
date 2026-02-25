@@ -1,6 +1,6 @@
 import { useShallow } from "zustand/react/shallow";
 import { useTaskStore } from "../../features/todo-feature/store";
-import TaskItem from "./task-item/task-item";
+import TaskItem from "./task-item";
 
 import style from "./task-list.module.scss";
 

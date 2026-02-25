@@ -2,9 +2,9 @@ import {
   deleteAllTasks,
   useTaskStore,
 } from "../../features/todo-feature/store";
-import TaskForm from "../task-form/task-form";
-import TaskList from "../task-list/task-list";
-import { AppHeader } from "../app-header/app-header";
+import TaskForm from "../task-form";
+import TaskList from "../task-list";
+import AppHeader from "../app-header";
 
 import { MdOutlineClose } from "react-icons/md";
 import style from "./app.module.scss";
