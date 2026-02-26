@@ -1,6 +1,6 @@
 # TodoApp
 
-###### ver: React Zustand + Tanstack Query
+###### ver: React Zustand + Tanstack Query ++++
 
 This app lets you:
 
