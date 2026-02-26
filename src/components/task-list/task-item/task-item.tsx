@@ -1,62 +1,48 @@
-import { PrimitiveAtom, useAtom } from "jotai";
+import { PrimitiveAtom, useAtomValue, useSetAtom } from "jotai";
 import {
   deleteTaskAtom,
   selectTaskToEditAtom,
-  toggleTaskAsCompletedAtom,
+  toggleTaskAtom,
 } from "../../../features/todo-feature/todo-store";
 
 import { MdOutlineDelete, MdOutlineEdit } from "react-icons/md";
 import { type Task } from "../../../types";
 import style from "./task-item.module.scss";
 
-type TaskItem = {
-  // data: Task
+type TaskItemProps = {
   atom: PrimitiveAtom<Task>;
 };
 
-// const TaskItem = ({ data }: TaskItem) => {
-const TaskItem = ({ atom }: TaskItem) => {
-  const [data] = useAtom(atom);
+const TaskItem = ({ atom }: TaskItemProps) => {
+  const data = useAtomValue(atom);
+  const deleteTask = useSetAtom(deleteTaskAtom);
+  const toggleTask = useSetAtom(toggleTaskAtom);
+  const selectTaskToEdit = useSetAtom(selectTaskToEditAtom);
 
-  const [, deleteTask] = useAtom(deleteTaskAtom);
-  const [, toggleTaskAsCompleted] = useAtom(toggleTaskAsCompletedAtom);
-  const [, selectTaskToEdit] = useAtom(selectTaskToEditAtom);
-
-  const deleteTaskHandler = () => {
-    const deleteTaskConfirm = confirm("Delete this task?");
-    if (deleteTaskConfirm) {
-      deleteTask(data.taskId);
-    }
-  };
-
-  const selectEditTaskHandler = () => {
-    selectTaskToEdit(data);
-  };
-
-  const toggleTaskAsCompleteHandler = () => {
-    toggleTaskAsCompleted(data.taskId);
+  const handleDelete = () => {
+    if (confirm("Delete this task?")) deleteTask(data.taskId);
   };
 
   return (
-    <li className={`${style["TaskItem"]}`} key={data.taskId}>
+    <li className={style["TaskItem"]}>
       <input
         type="checkbox"
-        onChange={toggleTaskAsCompleteHandler}
-        checked={data.isCompleted ? true : false}
-        className={`${style["checkbox"]}`}
+        checked={data.isCompleted}
+        onChange={() => toggleTask(data.taskId)}
+        className={style["checkbox"]}
       />
       <span
-        className={`${style["task-name"]} ${data.isCompleted ? `${style["isCompleted"]}` : ``}`}
+        className={`${style["task-name"]} ${data.isCompleted ? style["isCompleted"] : ""}`}
       >
         {data.taskTitle}
       </span>
       <MdOutlineEdit
-        onClick={selectEditTaskHandler}
-        className={`${"pointer"} ${style["item-btn"]}`}
+        onClick={() => selectTaskToEdit(data)}
+        className={`pointer ${style["item-btn"]}`}
       />
       <MdOutlineDelete
-        onClick={deleteTaskHandler}
-        className={`${"pointer"} ${style["item-btn"]}`}
+        onClick={handleDelete}
+        className={`pointer ${style["item-btn"]}`}
       />
     </li>
   );

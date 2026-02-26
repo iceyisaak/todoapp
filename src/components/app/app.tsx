@@ -1,4 +1,4 @@
-import { useAtom } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 import { tasksAtom } from "../../features/todo-feature/todo-initialstate";
 import { deleteAllTasksAtom } from "../../features/todo-feature/todo-store";
 
@@ -10,28 +10,21 @@ import { MdOutlineClose } from "react-icons/md";
 import style from "./app.module.scss";
 
 const App = () => {
-  const [tasks] = useAtom(tasksAtom);
-  const [, deleteAllTasks] = useAtom(deleteAllTasksAtom);
+  const tasks = useAtomValue(tasksAtom);
+  const deleteAllTasks = useSetAtom(deleteAllTasksAtom);
 
   const deleteAllTasksHandler = () => {
-    const deleteAllTasksConfirm = confirm("Delete All Tasks?");
-    if (deleteAllTasksConfirm) {
-      deleteAllTasks();
-    }
+    if (confirm("Delete All Tasks?")) deleteAllTasks();
   };
 
   return (
-    <div className={`${style["container"]}`}>
-      <main className={`${style["main"]}`}>
+    <div className={style["container"]}>
+      <main className={style["main"]}>
         {tasks.length > 0 && (
           <MdOutlineClose
             title="Delete All Tasks"
             onClick={deleteAllTasksHandler}
-            className={`
-                ${"pointer"}
-                ${style["btn-delall"]}
-                ${style["btn-delete-all"]}
-              `}
+            className={`pointer ${style["btn-delete-all"]}`}
           />
         )}
         <AppHeader />

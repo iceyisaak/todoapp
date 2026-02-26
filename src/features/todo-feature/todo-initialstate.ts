@@ -5,4 +5,4 @@ import { Task } from "../../types";
 export const tasksAtom = atomWithStorage<Task[]>("task-list", []);
 export const tasksSplitAtom = splitAtom(tasksAtom);
 export const newTaskAtom = atom("");
-export const isEditingAtom = atom<null | Task>(null);
+export const isEditingAtom = atom<Task | null>(null);
