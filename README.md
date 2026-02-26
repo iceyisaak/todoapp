@@ -1,23 +1,24 @@
 # TodoApp
+
 ###### ver: React Jotai
-###### 20231101
 
 This app lets you:
+
 1. Create tasks
 2. Read tasks
 3. Update tasks
 4. Delete tasks
 
-
 Different versions avaialble with respective branch names:
+
 - master: Latest version
 - react-query: Implementation of React Query with JSON Server
 - jotai: Implementation of Jotai as the state manager
 - zustand: Implementation of Zustand as the state manager
 - context-api: original version using react context API
 
-
 ## Features
+
 - Simple form input
 - Simple list that display entered tasks
 - Data stored in `localStorage`
@@ -26,23 +27,22 @@ Different versions avaialble with respective branch names:
 - A button to delete each task
 - A button to toggle task as completed
 
-
 ## How to run project
+
 - In the console: run command
   ```
   npm run dev
   ```
 
-
-
 ## Sources, Technologies, and Dependencies
 
 ### Sources
+
 Thumbnail
 https://www.reshot.com/free-svg-icons/item/check-list-3EU5R962XC/
 
-
 ### Technologies
+
 - ReactJS
 - Jotai
 - TypeScript
@@ -50,8 +50,8 @@ https://www.reshot.com/free-svg-icons/item/check-list-3EU5R962XC/
 - ReactIcons
 - localStorage
 
-
 ### Dependencies
+
 ```json
   "dependencies": {
     "jotai": "^2.5.0",
@@ -63,6 +63,7 @@ https://www.reshot.com/free-svg-icons/item/check-list-3EU5R962XC/
 ```
 
 ### DevDependencies
+
 ```json
    "devDependencies": {
     "@types/react": "^18.2.15",
@@ -80,4 +81,4 @@ https://www.reshot.com/free-svg-icons/item/check-list-3EU5R962XC/
   }
 ```
 
-## 
+##
