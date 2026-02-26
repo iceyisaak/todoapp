@@ -1,78 +1,61 @@
-import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react'
-import { MdOutlineAddCircleOutline } from 'react-icons/md'
-import { v4 as uuidV4 } from 'uuid'
-import { shallow } from 'zustand/shallow'
-import { addTask, editTask, setIsEditingDone, useTaskStore } from '../../features/todo-feature/todo-store'
-
-import style from './task-form.module.scss'
-
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
+import { MdOutlineAddCircleOutline } from "react-icons/md";
+import { uuidv7 } from "uuidv7";
+import {
+  addTask,
+  editTask,
+  setIsEditingDone,
+  useTaskStore,
+} from "../../features/todo-feature/store";
+import style from "./task-form.module.scss";
 
 const TaskForm = () => {
+  const [text, setText] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null!);
 
-    const [text, setText] = useState("")
-    const inputRef = useRef<HTMLInputElement>(null!)
-    const { isEditing } = useTaskStore((state) => state)
+  const { isEditing } = useTaskStore();
 
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setText(e.target.value);
+  };
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setText(e.target.value)
+  const onSubmitHandler = (e: FormEvent) => {
+    e.preventDefault();
+    if (isEditing === null) {
+      addTask({ taskId: uuidv7(), taskTitle: text, isCompleted: false });
+    } else {
+      editTask(isEditing.taskId, text);
+      setIsEditingDone();
     }
+    setText("");
+  };
 
-    const onSubmitHandler = (e: FormEvent) => {
-        e.preventDefault()
-
-        if (isEditing === null) {
-            addTask({
-                taskId: uuidV4(),
-                taskTitle: text,
-                isCompleted: false
-            })
-            setText('')
-        } else if (isEditing !== null) {
-            editTask(isEditing.taskId, text)
-            setText('')
-            setIsEditingDone()
-        }
-
+  useEffect(() => {
+    if (isEditing !== null) {
+      setText(isEditing.taskTitle);
+      inputRef.current.focus();
+    } else {
+      setText("");
     }
+  }, [isEditing]);
 
+  return (
+    <form onSubmit={onSubmitHandler} className={style["form"]}>
+      <input
+        type="text"
+        onChange={onChangeHandler}
+        placeholder="e.g. Shopping"
+        value={text}
+        required
+        className={style["input"]}
+        maxLength={25}
+        ref={inputRef}
+      />
+      <button className={style["btn"]}>
+        <MdOutlineAddCircleOutline className={`${style["btn-text"]} pointer`} />
+      </button>
+    </form>
+  );
+};
 
-    useEffect(() => {
-        const unsub = useTaskStore.subscribe(
-            (state) => state.isEditing,
-            (isEditing) => {
-                if (isEditing !== null) {
-                    setText(isEditing?.taskTitle)
-                    inputRef.current.focus()
-                } else {
-                    setText('')
-                }
-            },
-            { equalityFn: shallow }
-        )
-        return unsub
-    }, [])
-
-
-    return (
-        <form onSubmit={onSubmitHandler} className={`${style['form']}`}>
-            <input
-                type="text"
-                onChange={onChangeHandler}
-                placeholder='e.g. Shopping'
-                value={text}
-                required
-                className={`${style['input']}`}
-                maxLength={25}
-                ref={inputRef}
-            />
-            <button className={`${style['btn']}`}>
-                <MdOutlineAddCircleOutline
-                    className={`${style['btn-text']} ${'pointer'}`}
-                />
-            </button>
-        </form>
-    )
-}
-
-export default TaskForm
+export default TaskForm;
