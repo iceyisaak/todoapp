@@ -1,8 +1,7 @@
-
-export type Task = {
-    taskId: string,
-    taskTitle: string,
-    isCompleted: boolean
+export interface Task {
+  taskId: string;
+  taskTitle: string;
+  isCompleted: boolean;
 }
 
 // export type TaskInitialState = {
@@ -10,4 +9,3 @@ export type Task = {
 //     isEditing: null | Task,
 //     isLoading: boolean
 // }
-
