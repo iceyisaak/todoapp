@@ -3,9 +3,3 @@ export interface Task {
   taskTitle: string;
   isCompleted: boolean;
 }
-
-// export type TaskInitialState = {
-//     tasks: Task[],
-//     isEditing: null | Task,
-//     isLoading: boolean
-// }
